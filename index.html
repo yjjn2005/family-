@@ -1,0 +1,3388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유병순 + 이예분 家系圖</title>
+<meta name="theme-color" content="#060A12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="창원 유씨 유병순·이예분 5대 가계도 — 전화번호·메모 관리 및 PC·모바일 기기 연동">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════
+   CSS VARIABLES & RESET
+════════════════════════════════ */
+:root {
+  --gold:    #E4BD6A;
+  --gold2:   #C99A3C;
+  --gold-dim: rgba(228,189,106,.16);
+  --gold-soft: rgba(228,189,106,.07);
+  --bg:      #060A12;
+  --bg2:     #0B1320;
+  --bg3:     #101B2C;
+  --glass:   rgba(255,255,255,.035);
+  --glass2:  rgba(255,255,255,.07);
+  --bdr:     rgba(255,255,255,.075);
+  --bdrG:    rgba(228,189,106,.30);
+  --txt:     #F1EDE1;
+  --muted:   rgba(241,237,225,.56);
+  --muted2:  rgba(241,237,225,.30);
+  --radius:      14px;
+  --shadow-card: 0 4px 20px rgba(0,0,0,.5);
+  --shadow-lift: 0 18px 44px rgba(0,0,0,.62);
+  --ease:        cubic-bezier(.22,.61,.36,1);
+
+  /* Generation colors — sequential from deep to light */
+  --g1:  #7A3F2A;   /* 1세 고인 */
+  --g2:  #163454;   /* 2세 */
+  --g2s: #14293E;   /* 2세 배우자 */
+  --g3d: #1A3D28;   /* 3세 직계 */
+  --g3s: #1C2E40;   /* 3세 방계 */
+  --g4d: #3D2500;   /* 4세 직계 */
+  --g4s: #1E2E1A;   /* 4세 방계 */
+  --g5:  #251540;   /* 5세 */
+  --sp:  #1A1540;   /* 배우자 */
+  --dec: #2A1010;   /* 고인 공통 */
+
+  /* Band backgrounds for generation rows */
+  --band1: rgba(122,63,42,.07);
+  --band2: rgba(22,52,84,.07);
+  --band3: rgba(26,61,40,.06);
+  --band4: rgba(61,37,0,.06);
+  --band5: rgba(37,21,64,.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient luxury backdrop */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 68% 48% at 16% 2%, rgba(42,86,158,.17) 0%, transparent 62%),
+    radial-gradient(ellipse 58% 62% at 90% 98%, rgba(98,44,120,.13) 0%, transparent 60%),
+    radial-gradient(ellipse 52% 38% at 50% -2%, rgba(228,189,106,.08) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(255,255,255,.011) 47px, rgba(255,255,255,.011) 48px),
+    repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(255,255,255,.011) 47px, rgba(255,255,255,.011) 48px);
+}
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 100% 78% at 50% 38%, transparent 56%, rgba(0,0,0,.46) 100%);
+}
+
+.wrap { position: relative; z-index: 1; max-width: 2000px; margin: 0 auto; padding: 0 12px 120px; }
+
+/* ════════════════════════════════
+   HEADER
+════════════════════════════════ */
+.hdr {
+  text-align: center;
+  padding: 56px 20px 34px;
+  position: relative; z-index: 1;
+  margin-bottom: 4px;
+}
+.hdr::after {
+  content: '';
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: min(640px, 88%); height: 1px;
+  background: linear-gradient(90deg, transparent, var(--bdrG) 16%, var(--gold) 50%, var(--bdrG) 84%, transparent);
+}
+.hdr-ornament {
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  margin-bottom: 22px;
+}
+.hdr-line {
+  flex: 1; max-width: 132px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hdr-seal {
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 1.5px solid var(--bdrG);
+  background:
+    radial-gradient(circle at 38% 32%, rgba(228,189,106,.18), transparent 72%),
+    linear-gradient(160deg, rgba(255,255,255,.045), transparent);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 42px rgba(228,189,106,.18), inset 0 0 24px rgba(228,189,106,.07);
+}
+.hdr-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(24px, 4.4vw, 44px);
+  font-weight: 900;
+  letter-spacing: 14px; padding-left: 14px;
+  color: var(--gold);
+  text-shadow: 0 2px 16px rgba(228,189,106,.35);
+  margin-bottom: 12px;
+}
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hdr-title {
+    background: linear-gradient(178deg, #FBEFD0 6%, var(--gold) 48%, #B8862C 96%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 12px rgba(228,189,106,.34));
+    text-shadow: none;
+  }
+}
+.hdr-sub {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px; color: var(--muted);
+  letter-spacing: 7px; padding-left: 7px; margin-bottom: 18px;
+}
+.hdr-meta {
+  display: inline-flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(228,189,106,.11), rgba(228,189,106,.04));
+  border: 1px solid var(--bdrG);
+  border-radius: 999px; padding: 8px 26px; font-size: 12px;
+  color: var(--gold); font-family: 'Noto Serif KR', serif; letter-spacing: 1px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.hdr-meta span { color: var(--muted2); }
+
+/* ════════════════════════════════
+   TAB NAVIGATION
+════════════════════════════════ */
+.nav {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 7px;
+  padding: 16px 0 14px;
+  position: sticky; top: 0; z-index: 50;
+  background: linear-gradient(to bottom, var(--bg) 72%, rgba(6,10,18,.62) 90%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.tab-btn {
+  background: var(--glass); color: var(--muted);
+  border: 1px solid var(--bdr); border-radius: 999px;
+  padding: 9px 22px; font-size: 12.5px; font-weight: 700;
+  cursor: pointer; transition: all .25s var(--ease);
+  font-family: 'Noto Sans KR', sans-serif; letter-spacing: .3px;
+}
+.tab-btn:hover { background: var(--glass2); color: var(--txt); transform: translateY(-1px); }
+.tab-btn.on {
+  background: linear-gradient(135deg, rgba(228,189,106,.30), rgba(228,189,106,.12));
+  color: var(--gold); border: 1px solid var(--gold2);
+  box-shadow: 0 4px 18px rgba(228,189,106,.20), inset 0 1px 0 rgba(255,255,255,.10);
+}
+.panel { display: none; }
+.panel.on { display: block; animation: panelIn .35s var(--ease); }
+@keyframes panelIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* ════════════════════════════════
+   LEGEND
+════════════════════════════════ */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+  padding: 14px 20px 16px;
+}
+.lg-item {
+  display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted);
+  background: var(--glass); border: 1px solid var(--bdr);
+  border-radius: 999px; padding: 5px 12px 5px 9px;
+}
+.lg-dot { width: 11px; height: 11px; border-radius: 4px; flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 1px 4px rgba(0,0,0,.4); }
+
+/* ════════════════════════════════
+   TREE CANVAS
+════════════════════════════════ */
+.tree-scroll {
+  overflow-x: auto; overflow-y: visible;
+  padding: 10px 10px 40px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(228,189,106,.3) transparent;
+}
+.tree-scroll::-webkit-scrollbar { height: 4px; }
+.tree-scroll::-webkit-scrollbar-thumb { background: rgba(228,189,106,.3); border-radius: 2px; }
+
+.tree-canvas {
+  position: relative;
+  min-width: max-content;
+  display: inline-block;
+}
+.tree-svg {
+  position: absolute; top: 0; left: 0;
+  overflow: visible; pointer-events: none; z-index: 0;
+}
+
+/* ════════════════════════════════
+   GENERATION ROWS
+════════════════════════════════ */
+.gen-row {
+  position: relative; z-index: 1;
+  display: flex; align-items: stretch;
+  animation: fadeUp .5s ease backwards;
+}
+.gen-row:nth-child(1) { animation-delay: .05s; }
+.gen-row:nth-child(2) { animation-delay: .12s; }
+.gen-row:nth-child(3) { animation-delay: .20s; }
+.gen-row:nth-child(4) { animation-delay: .28s; }
+.gen-row:nth-child(5) { animation-delay: .36s; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+/* generation band background */
+.gen-band {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none; border-radius: 4px;
+}
+
+/* left gutter with generation label */
+.gen-label {
+  width: 86px; min-width: 86px; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 16px 0 16px 0;
+  position: sticky; left: 0; z-index: 20;
+  background: linear-gradient(90deg, var(--bg) 75%, transparent);
+}
+.gen-num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 23px; font-weight: 900;
+  line-height: 1; display: block;
+  color: var(--gold);
+}
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .gen-num {
+    background: linear-gradient(170deg, #FBEFD0, var(--gold) 55%, #B8862C);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.gen-lbl {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 2px; margin-top: 4px; display: block;
+  font-family: 'Noto Serif KR', serif;
+}
+.gen-lbl-kor {
+  font-size: 9px; color: var(--muted2);
+  letter-spacing: 1px; margin-top: 2px; display: block;
+}
+.gen-sep {
+  width: 1px; flex-shrink: 0; margin: 0 14px;
+  background: linear-gradient(to bottom, transparent, var(--gold2) 30%, var(--gold2) 70%, transparent);
+  opacity: .35;
+}
+
+/* nodes area */
+.gen-nodes {
+  display: flex; align-items: flex-start;
+  padding: 22px 10px;
+  gap: 0;
+}
+
+/* gap between rows */
+.gen-gap { height: 72px; position: relative; z-index: 0; }
+
+/* ════════════════════════════════
+   FAMILY GROUPS
+════════════════════════════════ */
+.fam-group {
+  display: flex; flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+.couple-row {
+  display: flex; align-items: center; gap: 2px;
+}
+.csym {
+  color: rgba(228,189,106,.5); font-size: 14px;
+  padding: 0 3px; margin-top: 4px; flex-shrink: 0;
+}
+.children-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-top: 0; padding: 0 4px;
+}
+
+/* branch group divider */
+.branch-div {
+  width: 1px; align-self: stretch; margin: 16px 16px;
+  background: linear-gradient(to bottom, transparent 5%, rgba(255,255,255,.06) 50%, transparent 95%);
+  flex-shrink: 0;
+}
+
+/* branch label */
+.branch-label {
+  font-size: 9px; color: var(--gold); opacity: .7;
+  font-family: 'Noto Serif KR', serif; letter-spacing: 2px;
+  margin-bottom: 6px; text-align: center;
+}
+.branch-label.direct { opacity: 1; font-weight: 700; }
+
+/* sub-parent label */
+.sub-lbl {
+  font-size: 9px; color: var(--muted2);
+  margin-bottom: 4px; text-align: center; letter-spacing: .5px;
+}
+
+/* ════════════════════════════════
+   PERSON CARDS
+════════════════════════════════ */
+.pc {
+  border-radius: 12px; padding: 11px 15px 10px;
+  min-width: 84px; max-width: 116px;
+  text-align: center; cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.06);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+  user-select: none; flex-shrink: 0; z-index: 2;
+  overflow: hidden;
+}
+.pc::before {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 0; height: 44%;
+  background: linear-gradient(180deg, rgba(255,255,255,.11), transparent);
+  pointer-events: none;
+}
+.pc::after {
+  content: '';
+  position: absolute; left: 15%; right: 15%; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+  pointer-events: none;
+}
+.pc:hover {
+  transform: translateY(-4px) scale(1.055);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255,255,255,.11); z-index: 5;
+}
+.pc.deceased {
+  border-color: rgba(228,189,106,.26) !important;
+}
+.pc.deceased::after {
+  background: linear-gradient(90deg, transparent, rgba(228,189,106,.5), transparent);
+}
+.pc.is-me {
+  border-color: rgba(86,206,118,.78) !important;
+  box-shadow: 0 0 0 2px rgba(66,188,100,.5), 0 0 28px rgba(66,188,100,.24), var(--shadow-card) !important;
+}
+.pc.is-focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 2px var(--gold2), 0 0 40px rgba(228,189,106,.4), var(--shadow-card) !important;
+}
+
+.pc-badge {
+  position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+  border-radius: 999px; padding: 2px 9px;
+  font-size: 8px; font-weight: 900;
+  white-space: nowrap; letter-spacing: .5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.55); z-index: 3;
+}
+.badge-gold { background: var(--gold); color: #000; }
+.badge-green { background: #3db87a; color: #fff; }
+
+.pc-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13.5px; font-weight: 700; color: #FCFAF3;
+  white-space: nowrap; letter-spacing: .4px;
+  position: relative; z-index: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,.55);
+}
+.pc-name .ko { color: #FF7B72; font-weight: 900; font-size: .85em; }
+.pc-role {
+  display: none;
+}
+
+/* compact card variant */
+.pc.sm {
+  min-width: 70px; max-width: 96px;
+  padding: 8px 11px 7px;
+}
+.pc.sm .pc-name { font-size: 11.5px; }
+.pc.sm .pc-role { font-size: 8px; }
+
+/* ════════════════════════════════
+   POPUP
+════════════════════════════════ */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center;
+  z-index: 1000; padding: 16px;
+  backdrop-filter: blur(5px);
+}
+.overlay.show { display: flex; }
+.popup {
+  background: linear-gradient(180deg, var(--bg3), var(--bg2));
+  border: 1px solid var(--bdrG);
+  border-radius: 20px; padding: 26px;
+  width: 100%; max-width: 340px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+  animation: pop .24s var(--ease);
+}
+@keyframes pop { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+.popup-title {
+  font-family: 'Noto Serif KR', serif; color: var(--gold);
+  font-size: 16px; font-weight: 700; margin-bottom: 16px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--bdrG);
+}
+.popup-field {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 12px; background: rgba(255,255,255,.04);
+  border-radius: 7px; margin-bottom: 7px;
+}
+.pf-key { font-size: 11px; color: var(--muted); }
+.pf-val { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 700; }
+.btn-close {
+  width: 100%; background: var(--glass2); color: #fff;
+  border: 1px solid var(--bdr); border-radius: 8px;
+  padding: 10px; font-size: 13px; cursor: pointer;
+  font-family: inherit; margin-top: 4px;
+  transition: background .15s;
+}
+.btn-close:hover { background: var(--glass); }
+
+/* ════════════════════════════════
+   CARD LIST PANEL
+════════════════════════════════ */
+.card-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;
+  margin-top: 4px;
+}
+.branch-card {
+  background: linear-gradient(180deg, var(--bg2), rgba(11,19,32,.6));
+  border: 1px solid var(--bdr);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform .22s var(--ease), border-color .22s var(--ease);
+}
+.branch-card:hover { transform: translateY(-3px); border-color: var(--bdrG); }
+.branch-card-hd {
+  padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--bdr);
+  background: linear-gradient(90deg, rgba(228,189,106,.07), transparent);
+}
+.branch-card-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.branch-card-name { font-family: 'Noto Serif KR', serif; font-size: 15px; font-weight: 700; }
+.branch-card-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.branch-card-body { padding: 14px; }
+.bc-person { display: flex; align-items: center; gap: 7px; padding: 5px 0; }
+.bc-indent { color: rgba(255,255,255,.15); font-size: 11px; }
+.bc-name { font-family: 'Noto Serif KR', serif; font-size: 13px; font-weight: 700; }
+.bc-role { font-size: 10px; color: var(--muted); }
+.bc-sp { font-size: 11px; color: rgba(228,189,106,.55); }
+.bc-children { margin-left: 18px; border-left: 1px solid rgba(255,255,255,.06); padding-left: 10px; margin-top: 4px; }
+.bc-child { display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+.bc-child-name { font-family: 'Noto Serif KR', serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.8); }
+.bc-child-role { font-size: 9px; color: var(--muted2); margin-left: auto; background: rgba(255,255,255,.04); border-radius: 3px; padding: 1px 6px; }
+.bc-gc { margin-left: 14px; border-left: 1px solid rgba(255,255,255,.04); padding-left: 8px; margin-top: 3px; }
+.bc-gc-row { display: flex; align-items: center; gap: 5px; padding: 2px 0; font-size: 11px; color: rgba(255,255,255,.5); }
+
+/* ════════════════════════════════
+   PRINT PANEL
+════════════════════════════════ */
+.print-panel { max-width: 900px; margin: 0 auto; }
+.print-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, rgba(228,189,106,.25), rgba(228,189,106,.1));
+  color: var(--gold); border: 1px solid var(--gold2);
+  border-radius: 999px; padding: 10px 28px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: 'Noto Serif KR', serif; letter-spacing: 1px;
+  transition: all .2s; margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(228,189,106,.1);
+}
+.print-btn:hover { box-shadow: 0 0 30px rgba(228,189,106,.25); transform: translateY(-1px); }
+.print-section { margin-bottom: 24px; }
+.print-sec-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, rgba(228,189,106,.1), transparent);
+  border-left: 3px solid var(--gold2); border-radius: 0 8px 8px 0;
+  margin-bottom: 10px;
+}
+.print-sec-title { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 700; color: var(--gold); }
+.print-rows { background: var(--bg2); border: 1px solid var(--bdr); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-card); }
+.print-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,.045);
+  transition: background .15s;
+}
+.print-row:hover { background: rgba(255,255,255,.025); }
+.print-row:last-child { border-bottom: none; }
+.pr-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.pr-name { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 700; min-width: 72px; }
+.pr-role { font-size: 11px; color: var(--muted); }
+.pr-sp { font-size: 11px; color: rgba(228,189,106,.65); }
+
+/* ════════════════════════════════
+   ROW CONTROLS (전화·메모·이름수정)
+════════════════════════════════ */
+.row-ctrl {
+  margin-left: auto; display: flex; align-items: center; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end;
+}
+.pr-phone-saved { font-size: 12px; color: rgba(100,220,160,.85); cursor: pointer; letter-spacing: .3px; white-space: nowrap; }
+.pr-phone-saved:hover { text-decoration: underline; }
+.pr-note-display { font-size: 11px; color: rgba(180,160,80,.8); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.pr-phone-btn, .pr-note-btn {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px; padding: 4px 8px; font-size: 12px; color: var(--muted);
+  cursor: pointer; transition: all .15s; flex-shrink: 0;
+  font-family: 'Noto Sans KR', sans-serif; line-height: 1;
+  min-width: 32px; text-align: center;
+}
+.pr-phone-btn:hover { background: rgba(228,189,106,.15); color: var(--gold); border-color: var(--gold2); }
+.pr-phone-btn.has-phone { background: rgba(40,160,100,.12); border-color: rgba(40,160,100,.3); color: rgba(100,220,160,.8); }
+.pr-note-btn:hover { background: rgba(200,160,40,.15); color: rgba(220,190,80,.9); border-color: rgba(200,160,40,.3); }
+.pr-note-btn.has-note { background: rgba(160,130,30,.15); border-color: rgba(200,160,40,.3); color: rgba(220,190,80,.9); }
+
+.pr-phone-input-wrap { display: none; align-items: center; gap: 5px; margin-top: 4px; flex-wrap: wrap; width: 100%; justify-content: flex-end; }
+.pr-phone-input-wrap.show { display: flex; }
+.pr-phone-input {
+  background: rgba(255,255,255,.07); border: 1px solid var(--bdrG);
+  border-radius: 7px; padding: 6px 10px; font-size: 13px; color: var(--txt);
+  outline: none; width: 150px; font-family: 'Noto Sans KR', sans-serif;
+  transition: border-color .15s;
+}
+.pr-phone-input:focus { border-color: var(--gold); }
+.pr-phone-save {
+  background: linear-gradient(135deg, rgba(228,189,106,.3), rgba(228,189,106,.1));
+  border: 1px solid var(--gold2); border-radius: 6px;
+  padding: 5px 12px; font-size: 12px; color: var(--gold);
+  cursor: pointer; white-space: nowrap; transition: all .15s;
+}
+.pr-phone-save:hover { background: rgba(228,189,106,.4); }
+.pr-phone-del {
+  background: rgba(200,60,60,.1); border: 1px solid rgba(200,60,60,.22);
+  border-radius: 6px; padding: 5px 9px; font-size: 12px; color: rgba(220,100,100,.75);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.pr-phone-del:hover { background: rgba(200,60,60,.22); }
+
+/* toolbar */
+.phone-toolbar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 10px 0 8px;
+}
+.phone-toolbar-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--glass2); border: 1px solid var(--bdr);
+  border-radius: 999px; padding: 8px 18px; font-size: 12px; color: var(--muted);
+  cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: all .15s;
+}
+.phone-toolbar-btn:hover { border-color: var(--gold2); color: var(--gold); background: rgba(228,189,106,.1); }
+
+/* ════════════════════════════════
+   MODALS (공통)
+════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.75);
+  display: none; align-items: center; justify-content: center;
+  z-index: 2000; padding: 16px; backdrop-filter: blur(6px);
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: linear-gradient(180deg, var(--bg3), var(--bg2));
+  border: 1px solid var(--bdrG);
+  border-radius: 20px; padding: 26px;
+  width: 100%; max-width: 480px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.05);
+  animation: pop .24s var(--ease);
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-title { font-family: 'Noto Serif KR', serif; color: var(--gold); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.modal-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+.modal-section-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+.modal-row { display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; }
+.modal-btn {
+  background: var(--glass2); border: 1px solid var(--bdr);
+  border-radius: 8px; padding: 8px 16px; font-size: 13px; color: var(--txt);
+  cursor: pointer; font-family: 'Noto Sans KR', sans-serif;
+  transition: all .15s; white-space: nowrap;
+}
+.modal-btn:hover { background: var(--glass); border-color: var(--muted2); }
+.modal-btn-close { background: var(--glass); }
+.modal-textarea {
+  width: 100%; background: rgba(255,255,255,.06); border: 1px solid var(--bdrG);
+  border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--txt);
+  font-family: 'Noto Sans KR', sans-serif; outline: none; resize: vertical;
+  line-height: 1.5;
+}
+.modal-textarea:focus { border-color: var(--gold); }
+.modal-input {
+  width: 100%; background: rgba(255,255,255,.07); border: 1px solid var(--bdrG);
+  border-radius: 8px; padding: 10px 14px; font-size: 15px; color: var(--txt);
+  font-family: 'Noto Serif KR', serif; outline: none;
+  transition: border-color .15s;
+}
+.modal-input:focus { border-color: var(--gold); }
+
+/* ════════════════════════════════
+   MOBILE RESPONSIVE
+════════════════════════════════ */
+@media (max-width: 600px) {
+  .gen-label { width: 52px; min-width: 52px; }
+  .gen-num { font-size: 15px; }
+  .gen-lbl, .gen-lbl-kor { display: none; }
+  .pc { min-width: 62px; padding: 7px 8px; }
+  .pc-name { font-size: 11px; }
+  .hdr-title { letter-spacing: 6px; }
+  .nav { gap: 4px; padding: 12px 0 10px; }
+  .tab-btn { padding: 7px 14px; font-size: 11px; }
+
+  /* 모바일: 명단 행 세로 레이아웃 */
+  .print-row { flex-wrap: wrap; gap: 4px; padding: 12px 12px 10px; align-items: flex-start; }
+  .pr-dot { margin-top: 3px; }
+  .pr-name { font-size: 15px; min-width: 0; flex: 1; }
+  .pr-role { font-size: 11px; width: 100%; padding-left: 18px; }
+  .pr-sp { display: none; } /* 배우자 표기는 모바일에서 숨김 */
+  .row-ctrl {
+    width: 100%; margin-left: 0; margin-top: 6px;
+    padding-left: 18px; justify-content: flex-start;
+    gap: 8px;
+  }
+  /* 모바일: 버튼 터치 타깃 키움 */
+  .pr-phone-btn, .pr-note-btn {
+    min-width: 44px; min-height: 36px; font-size: 16px;
+    padding: 6px 12px; border-radius: 8px;
+  }
+  .pr-phone-saved { font-size: 14px; }
+  .pr-note-display { font-size: 12px; max-width: 160px; }
+
+  /* 모바일: 전화번호 입력 전체폭 */
+  .pr-phone-input-wrap { width: 100%; gap: 6px; margin-top: 6px; }
+  .pr-phone-input { width: 100%; flex: 1; font-size: 16px; padding: 10px 12px; }
+  .pr-phone-save, .pr-phone-del {
+    min-height: 40px; font-size: 13px; padding: 8px 14px;
+  }
+
+  /* 모바일: 모달 풀스크린 느낌 */
+  .modal-overlay { padding: 8px; align-items: flex-end; }
+  .modal-box {
+    border-radius: 18px 18px 10px 10px;
+    max-height: 88vh; padding: 22px 18px 28px;
+  }
+  .modal-btn { min-height: 44px; font-size: 14px; padding: 10px 16px; }
+  .modal-input { font-size: 16px; padding: 12px 14px; }
+  .modal-textarea { font-size: 14px; padding: 10px 12px; }
+  #syncCodeOut, #syncCodeIn { font-size: 12px; }
+
+  /* 모바일: 툴바 버튼 */
+  .phone-toolbar-btn { min-height: 40px; font-size: 13px; padding: 9px 16px; }
+
+  /* 모바일: 팝업 */
+  .popup { border-radius: 16px; padding: 22px 18px; }
+  .pf-val { font-size: 13px; }
+  .btn-close { min-height: 44px; font-size: 14px; }
+}
+@media (max-width: 380px) {
+  .hdr-title { font-size: 20px; letter-spacing: 4px; }
+  .tab-btn { padding: 6px 10px; font-size: 10px; }
+  .pr-phone-btn, .pr-note-btn { font-size: 18px; min-width: 46px; }
+}
+
+
+@media print {
+  .nav, .hdr-meta, .modal-overlay, .phone-toolbar, .row-ctrl, .phone-count, #panel-edit { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .pc { border: 1px solid #ccc !important; background: #f5f5f5 !important; box-shadow: none !important; }
+  .pc-name { color: #000 !important; }
+  .print-row { border-bottom: 1px solid #eee !important; }
+  .pr-name { color: #000 !important; }
+}
+
+/* ════════════════════════════════
+   EDIT PANEL
+════════════════════════════════ */
+.edit-section {
+  background: linear-gradient(180deg, var(--bg2), rgba(11,19,32,.55));
+  border: 1px solid var(--bdr);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.edit-sec-hd {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, rgba(228,189,106,.08), transparent);
+  border-bottom: 1px solid var(--bdr);
+}
+.edit-sec-icon { font-size: 24px; flex-shrink: 0; }
+.edit-sec-title { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: var(--gold); }
+.edit-sec-sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+/* search */
+.edit-search-bar { padding: 12px 16px 8px; }
+.edit-search {
+  width: 100%; background: rgba(255,255,255,.06); border: 1px solid var(--bdr);
+  border-radius: 10px; padding: 10px 14px; font-size: 14px; color: var(--txt);
+  outline: none; font-family: 'Noto Sans KR', sans-serif;
+  transition: border-color .15s;
+}
+.edit-search:focus { border-color: var(--gold); }
+
+/* name chip grid */
+.edit-name-grid {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 8px 16px 18px;
+}
+.name-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.05); border: 1px solid var(--bdr);
+  border-radius: 8px; padding: 7px 12px;
+  cursor: pointer; transition: all .15s;
+  font-family: 'Noto Serif KR', serif;
+  max-width: 200px;
+}
+.name-chip:hover { background: rgba(228,189,106,.12); border-color: var(--gold2); }
+.name-chip.edited { border-color: rgba(228,189,106,.4); background: rgba(228,189,106,.07); }
+.chip-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chip-orig { font-size: 13px; font-weight: 700; color: var(--txt); white-space: nowrap; }
+.chip-new { font-size: 11px; color: var(--gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip-edit-icon { font-size: 11px; color: var(--muted2); margin-left: auto; flex-shrink: 0; }
+
+/* inline name edit */
+.name-chip-editing {
+  flex-direction: column; align-items: stretch;
+  background: rgba(228,189,106,.07) !important;
+  border-color: var(--gold) !important;
+  padding: 10px 12px; gap: 8px;
+  max-width: 260px;
+}
+.chip-edit-input {
+  background: rgba(255,255,255,.1); border: 1px solid var(--bdrG);
+  border-radius: 6px; padding: 6px 10px; font-size: 13px; color: var(--txt);
+  outline: none; font-family: 'Noto Serif KR', serif; width: 100%;
+}
+.chip-edit-input:focus { border-color: var(--gold); }
+.chip-edit-btns { display: flex; gap: 6px; }
+.chip-save-btn {
+  background: linear-gradient(135deg, rgba(228,189,106,.3), rgba(228,189,106,.1));
+  border: 1px solid var(--gold2); border-radius: 6px;
+  padding: 5px 12px; font-size: 12px; color: var(--gold);
+  cursor: pointer; flex: 1; font-family: inherit;
+}
+.chip-cancel-btn {
+  background: rgba(255,255,255,.05); border: 1px solid var(--bdr);
+  border-radius: 6px; padding: 5px 10px; font-size: 12px; color: var(--muted);
+  cursor: pointer; font-family: inherit;
+}
+.chip-reset-btn {
+  background: rgba(200,60,60,.08); border: 1px solid rgba(200,60,60,.2);
+  border-radius: 6px; padding: 5px 10px; font-size: 11px; color: rgba(220,100,100,.7);
+  cursor: pointer; font-family: inherit;
+}
+
+/* add form */
+.edit-form { padding: 16px 20px 20px; }
+.ef-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.ef-field { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 120px; }
+.ef-wide { flex: 2; min-width: 160px; }
+.ef-lbl { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: .5px; }
+.ef-input {
+  background: rgba(255,255,255,.07); border: 1px solid var(--bdr);
+  border-radius: 8px; padding: 10px 12px; font-size: 14px; color: var(--txt);
+  outline: none; font-family: 'Noto Sans KR', sans-serif;
+  transition: border-color .15s; width: 100%;
+}
+.ef-input:focus { border-color: var(--gold); }
+.ef-select { cursor: pointer; }
+.ef-actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
+.ef-btn {
+  background: var(--glass2); border: 1px solid var(--bdr);
+  border-radius: 8px; padding: 10px 20px; font-size: 13px; color: var(--txt);
+  cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: all .15s;
+  white-space: nowrap;
+}
+.ef-btn:hover { background: var(--glass); border-color: var(--muted2); }
+.ef-btn-primary {
+  background: linear-gradient(135deg, rgba(61,184,122,.25), rgba(61,184,122,.1));
+  border-color: rgba(61,184,122,.4); color: #3db87a;
+}
+.ef-btn-primary:hover { background: rgba(61,184,122,.3); }
+.ef-btn-primary:disabled { opacity: .35; cursor: not-allowed; }
+
+/* custom member list in edit tab */
+.cm-row {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
+  background: var(--bg3);
+}
+.cm-row:last-child { border-bottom: none; }
+.cm-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.cm-name { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 700; }
+.cm-meta { font-size: 11px; color: var(--muted); }
+.cm-phone { font-size: 12px; color: rgba(100,220,160,.8); margin-left: auto; }
+.cm-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.cm-edit-btn { background: rgba(228,189,106,.1); border: 1px solid var(--bdrG); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--gold); cursor: pointer; }
+.cm-del-btn  { background: rgba(200,60,60,.08); border: 1px solid rgba(200,60,60,.2); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: rgba(220,100,100,.7); cursor: pointer; }
+
+@media (max-width: 600px) {
+  .edit-name-grid { gap: 6px; padding: 8px 12px 14px; }
+  .name-chip { padding: 8px 10px; }
+  .chip-orig { font-size: 14px; }
+  .edit-form { padding: 12px 14px 16px; }
+  .ef-row { gap: 8px; margin-bottom: 8px; }
+  .ef-input { font-size: 16px; padding: 11px 12px; }
+  .ef-btn { padding: 12px 18px; font-size: 14px; min-height: 46px; }
+  .edit-sec-title { font-size: 15px; }
+}
+
+/* ════════════════════════════════
+   2026 REFINEMENT — 럭셔리 고도화 & 기기 연동
+════════════════════════════════ */
+.tree-svg path { stroke-linecap: round; }
+
+* { scrollbar-width: thin; scrollbar-color: rgba(228,189,106,.32) transparent; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(228,189,106,.26); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(228,189,106,.5); }
+
+/* floating 기기연동 action button */
+#fabSync {
+  position: fixed; right: 22px; bottom: 22px; z-index: 900;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1px solid var(--gold2);
+  background: linear-gradient(145deg, #F0D48E, #C99A3C);
+  color: #1a1306; font-size: 23px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,.55), 0 0 0 7px rgba(228,189,106,.09);
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+#fabSync:hover {
+  transform: scale(1.09) rotate(30deg);
+  box-shadow: 0 14px 34px rgba(0,0,0,.6), 0 0 0 9px rgba(228,189,106,.14);
+}
+#fabSync:active { transform: scale(.95); }
+
+/* 가로 스크롤 안내 (터치 기기) */
+.scroll-hint {
+  display: none; text-align: center; font-size: 11px; color: var(--muted2);
+  padding: 2px 0 10px; letter-spacing: .6px;
+}
+#qrBox img, #qrBox canvas, #qrBox table { display: block; margin: 0 auto; }
+
+@media (hover: none) and (pointer: coarse) {
+  .scroll-hint { display: block; }
+}
+@media (max-width: 600px) {
+  #fabSync { width: 52px; height: 52px; right: 14px; bottom: 14px; font-size: 21px; }
+  .hdr { padding: 40px 14px 28px; }
+  .hdr-ornament { gap: 13px; margin-bottom: 16px; }
+  .hdr-line { max-width: 60px; }
+  .hdr-seal { width: 58px; height: 58px; }
+  .hdr-sub { letter-spacing: 4px; padding-left: 4px; font-size: 12px; }
+  .hdr-meta { gap: 9px; padding: 7px 16px; font-size: 11px; }
+  .legend { gap: 5px; padding: 11px 10px 13px; }
+  .lg-item { font-size: 10px; padding: 4px 9px 4px 7px; gap: 5px; }
+  .branch-card-name { font-size: 14px; }
+  .pc-name { font-size: 12px; }
+}
+@media print {
+  #fabSync, .scroll-hint { display: none !important; }
+  body::before, body::after { display: none !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ══ HEADER ══ -->
+<div class="hdr">
+  <div class="hdr-ornament">
+    <div class="hdr-line"></div>
+    <div class="hdr-seal">
+      <svg width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="14" fill="none" stroke="#E4BD6A" stroke-width=".8" opacity=".5"/>
+        <path d="M17 5L19.5 13L28 13L21.5 18.5L24 27L17 22L10 27L12.5 18.5L6 13L14.5 13Z"
+              fill="none" stroke="#E4BD6A" stroke-width=".8" opacity=".65"/>
+      </svg>
+    </div>
+    <div class="hdr-line" style="transform:scaleX(-1)"></div>
+  </div>
+  <div class="hdr-title">유병순 + 이예분</div>
+  <div class="hdr-sub">昌原 兪氏 · 家系圖 · 5代</div>
+  <div class="hdr-meta">
+    <span>1세대 시조</span> 유병순 + 이예분
+    <span>|</span> 총 5세대
+    <span>|</span> <span id="totalCount">수록 중</span>
+  </div>
+</div>
+
+<!-- ══ NAVIGATION ══ -->
+<div class="nav">
+  <button class="tab-btn on" onclick="showTab('tree')">🌳 전체 가계도</button>
+  <button class="tab-btn"    onclick="showTab('cards')">🗂 가계별 카드</button>
+  <button class="tab-btn"    onclick="showTab('list')">📋 전체 명단</button>
+  <button class="tab-btn" onclick="showTab('edit')" id="tab-edit" style="border-color:rgba(228,189,106,.4);color:var(--gold)">✏️ 편집 관리</button>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANEL 1: 전체 가계도 트리
+════════════════════════════════════════ -->
+<div id="panel-tree" class="panel on">
+
+  <div class="legend">
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g1)"></div>1세 · 시조 (故人)</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g2)"></div>2세 · 자녀세대</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g3d)"></div>3세 · 직계</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g3s)"></div>3세 · 방계</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g4d)"></div>4세 · 직계손</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g4s)"></div>4세 · 방계손</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--g5)"></div>5세 · 증손자녀</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--sp)"></div>배우자</div>
+    <div class="lg-item"><div class="lg-dot" style="background:var(--dec)"></div>故人</div>
+  </div>
+
+  <div class="scroll-hint">← 좌우로 넘겨 5대 가계도 전체 보기 →</div>
+  <div class="tree-scroll" id="treeScroll">
+    <div class="tree-canvas" id="treeCanvas">
+      <svg class="tree-svg" id="treeSvg"></svg>
+
+      <!-- ══════════════ 1세 ══════════════ -->
+      <div class="gen-row" id="row1">
+        <div class="gen-band" style="background:var(--band1)"></div>
+        <div class="gen-label">
+          <span class="gen-num">1세</span>
+          <span class="gen-lbl">시조</span>
+          <span class="gen-lbl-kor">始祖</span>
+        </div>
+        <div class="gen-sep"></div>
+        <div class="gen-nodes" style="justify-content:center; width:100%">
+          <div class="fam-group" id="fg-root">
+            <div class="couple-row">
+              <div class="pc deceased" style="background:var(--dec)" id="n-root-m"
+                   data-name="故 유병순" data-role="시조 · 증조할아버지" data-gen="1세">
+                <div class="pc-badge" style="background:rgba(228,189,106,.25);color:var(--gold);font-size:8px;border-radius:4px;padding:1px 6px;margin-bottom:3px">故人</div>
+                <div class="pc-name"><span class="ko">故</span> 유병순</div>
+                <div class="pc-role">시조</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc deceased" style="background:var(--dec)" id="n-root-f"
+                   data-name="故 이예분" data-role="시조 · 증조할머니" data-gen="1세">
+                <div class="pc-badge" style="background:rgba(228,189,106,.25);color:var(--gold);font-size:8px;border-radius:4px;padding:1px 6px;margin-bottom:3px">故人</div>
+                <div class="pc-name"><span class="ko">故</span> 이예분</div>
+                <div class="pc-role">시조</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gen-gap"></div>
+
+      <!-- ══════════════ 2세 ══════════════ -->
+      <div class="gen-row" id="row2">
+        <div class="gen-band" style="background:var(--band2)"></div>
+        <div class="gen-label">
+          <span class="gen-num">2세</span>
+          <span class="gen-lbl">자녀세대</span>
+          <span class="gen-lbl-kor">子女代</span>
+        </div>
+        <div class="gen-sep"></div>
+        <div class="gen-nodes">
+
+          <!-- 유순노 ⚭ 故유연배 -->
+          <div class="fam-group" id="fg2a">
+            <div style="class:branch-label">
+              <div style="font-size:9px;color:var(--gold);opacity:.6;font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">長女</div>
+            </div>
+            <div class="couple-row">
+              <div class="pc deceased" style="background:var(--dec)" id="n2a-sp"
+                   data-name="故 유연배" data-role="대고모부" data-gen="2세(배우자)">
+                <div class="pc-name"><span class="ko">故</span> 유연배</div>
+                <div class="pc-role">대고모부</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--g2)" id="n2a"
+                   data-name="유순노" data-role="대고모" data-gen="2세">
+                <div class="pc-name">유순노</div>
+                <div class="pc-role">대고모</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유창노 ⚭ 권선옥 (★ 직계) -->
+          <div class="fam-group" id="fg2b">
+            <div style="font-size:9px;color:var(--muted);font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">長男</div>
+            <div class="couple-row">
+              <div class="pc" style="background:var(--g2)" id="n2b"
+                   data-name="유창노" data-role="長男" data-gen="2세">
+                <div class="pc-name">유창노</div>
+                <div class="pc-role">할아버지</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--sp)" id="n2b-sp"
+                   data-name="권선옥" data-role="할머니" data-gen="2세(배우자)">
+                <div class="pc-name">권선옥</div>
+                <div class="pc-role">할머니</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유태노 ⚭ 한규자 -->
+          <div class="fam-group" id="fg2c">
+            <div style="font-size:9px;color:var(--gold);opacity:.6;font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">次男</div>
+            <div class="couple-row">
+              <div class="pc" style="background:var(--g2)" id="n2c"
+                   data-name="유태노" data-role="작은할아버지" data-gen="2세">
+                <div class="pc-name">유태노</div>
+                <div class="pc-role">작은할아버지</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--sp)" id="n2c-sp"
+                   data-name="한규자" data-role="작은할머니" data-gen="2세(배우자)">
+                <div class="pc-name">한규자</div>
+                <div class="pc-role">작은할머니</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유영노 ⚭ 신영희 -->
+          <div class="fam-group" id="fg2d">
+            <div style="font-size:9px;color:var(--gold);opacity:.6;font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">三男</div>
+            <div class="couple-row">
+              <div class="pc" style="background:var(--g2)" id="n2d"
+                   data-name="유영노" data-role="작은할아버지" data-gen="2세">
+                <div class="pc-name">유영노</div>
+                <div class="pc-role">작은할아버지</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--sp)" id="n2d-sp"
+                   data-name="신영희" data-role="작은할머니" data-gen="2세(배우자)">
+                <div class="pc-name">신영희</div>
+                <div class="pc-role">작은할머니</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유강노 ⚭ 김경애 -->
+          <div class="fam-group" id="fg2e">
+            <div style="font-size:9px;color:var(--gold);opacity:.6;font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">四男</div>
+            <div class="couple-row">
+              <div class="pc" style="background:var(--g2)" id="n2e"
+                   data-name="유강노" data-role="작은할아버지" data-gen="2세">
+                <div class="pc-name">유강노</div>
+                <div class="pc-role">작은할아버지</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--sp)" id="n2e-sp"
+                   data-name="김경애" data-role="작은할머니" data-gen="2세(배우자)">
+                <div class="pc-name">김경애</div>
+                <div class="pc-role">작은할머니</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유명노 ⚭ 최선숙 -->
+          <div class="fam-group" id="fg2f">
+            <div style="font-size:9px;color:var(--gold);opacity:.6;font-family:'Noto Serif KR',serif;letter-spacing:1px;text-align:center;margin-bottom:5px">五男</div>
+            <div class="couple-row">
+              <div class="pc" style="background:var(--g2)" id="n2f"
+                   data-name="유명노" data-role="작은할아버지" data-gen="2세">
+                <div class="pc-name">유명노</div>
+                <div class="pc-role">작은할아버지</div>
+              </div>
+              <span class="csym">⚭</span>
+              <div class="pc" style="background:var(--sp)" id="n2f-sp"
+                   data-name="최선숙" data-role="작은할머니" data-gen="2세(배우자)">
+                <div class="pc-name">최선숙</div>
+                <div class="pc-role">작은할머니</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="gen-gap"></div>
+
+      <!-- ══════════════ 3세 ══════════════ -->
+      <div class="gen-row" id="row3">
+        <div class="gen-band" style="background:var(--band3)"></div>
+        <div class="gen-label">
+          <span class="gen-num">3세</span>
+          <span class="gen-lbl">손자녀</span>
+          <span class="gen-lbl-kor">孫子女</span>
+        </div>
+        <div class="gen-sep"></div>
+        <div class="gen-nodes">
+
+          <!-- 유순노 가계 9명 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유순노 가계</div>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:5px;max-width:320px">
+              <div class="pc sm" style="background:var(--g3s)" id="n3a1" data-name="유금숙" data-role="5촌" data-gen="3세"><div class="pc-name">유금숙</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a2" data-name="유향숙" data-role="5촌" data-gen="3세"><div class="pc-name">유향숙</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a3" data-name="유지수" data-role="5촌" data-gen="3세"><div class="pc-name">유지수</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a4" data-name="유성규" data-role="5촌" data-gen="3세"><div class="pc-name">유성규</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a5" data-name="유완숙" data-role="5촌" data-gen="3세"><div class="pc-name">유완숙</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a6" data-name="유승희" data-role="5촌" data-gen="3세"><div class="pc-name">유승희</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a7" data-name="유민형" data-role="5촌" data-gen="3세"><div class="pc-name">유민형</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a8" data-name="유효경" data-role="5촌" data-gen="3세"><div class="pc-name">유효경</div><div class="pc-role">5촌</div></div>
+              <div class="pc sm" style="background:var(--g3s)" id="n3a9" data-name="유민균" data-role="5촌" data-gen="3세"><div class="pc-name">유민균</div><div class="pc-role">5촌</div></div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- ★ 유창노 가계 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유창노 가계</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <!-- 유재진 ⚭ 김희연 -->
+              <div class="fam-group" id="fg3b1">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3d)" id="n3b1"
+                       data-name="유재진" data-role="長孫" data-gen="3세">
+                    <div class="pc-name">유재진</div>
+                    <div class="pc-role">아버지</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3b1-sp"
+                       data-name="김희연" data-role="모(어머니)" data-gen="3세(배우자)">
+                    <div class="pc-name">김희연</div>
+                    <div class="pc-role">어머니</div>
+                  </div>
+                </div>
+              </div>
+              <!-- 유연진 ⚭ 이요섭 -->
+              <div class="fam-group" id="fg3b2">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3b2"
+                       data-name="유연진" data-role="고모" data-gen="3세">
+                    <div class="pc-name">유연진</div>
+                    <div class="pc-role">고모</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3b2-sp"
+                       data-name="이요섭" data-role="고모부" data-gen="3세(배우자)">
+                    <div class="pc-name">이요섭</div>
+                    <div class="pc-role">고모부</div>
+                  </div>
+                </div>
+              </div>
+              <!-- 유길진 ⚭ 문재식 -->
+              <div class="fam-group" id="fg3b3">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3b3"
+                       data-name="유길진" data-role="고모" data-gen="3세">
+                    <div class="pc-name">유길진</div>
+                    <div class="pc-role">고모</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3b3-sp"
+                       data-name="문재식" data-role="고모부" data-gen="3세(배우자)">
+                    <div class="pc-name">문재식</div>
+                    <div class="pc-role">고모부</div>
+                  </div>
+                </div>
+              </div>
+              <!-- 유병재 ⚭ 김건후 -->
+              <div class="fam-group" id="fg3b4">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3b4"
+                       data-name="유병재" data-role="삼촌" data-gen="3세">
+                    <div class="pc-name">유병재</div>
+                    <div class="pc-role">삼촌</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3b4-sp"
+                       data-name="김건후" data-role="숙모" data-gen="3세(배우자)">
+                    <div class="pc-name">김건후</div>
+                    <div class="pc-role">숙모</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유태노 가계 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유태노 가계</div>
+            <div class="fam-group" id="fg3c1">
+              <div class="couple-row">
+                <div class="pc" style="background:var(--g3s)" id="n3c1"
+                     data-name="유승진" data-role="당숙" data-gen="3세">
+                  <div class="pc-name">유승진</div>
+                  <div class="pc-role">당숙</div>
+                </div>
+                <span class="csym">⚭</span>
+                <div class="pc" style="background:var(--sp)" id="n3c1-sp"
+                     data-name="한희선" data-role="당숙모" data-gen="3세(배우자)">
+                  <div class="pc-name">한희선</div>
+                  <div class="pc-role">당숙모</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유영노 가계 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유영노 가계</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="fam-group" id="fg3d1">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3d1"
+                       data-name="유수진" data-role="당숙녀" data-gen="3세">
+                    <div class="pc-name">유수진</div>
+                    <div class="pc-role">당숙녀</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3d1-sp"
+                       data-name="조진환" data-role="당숙부" data-gen="3세(배우자)">
+                    <div class="pc-name">조진환</div>
+                    <div class="pc-role">당숙부</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3d2">
+                <div class="pc" style="background:var(--g3s)" id="n3d2"
+                     data-name="유은진" data-role="당숙녀" data-gen="3세">
+                  <div class="pc-name">유은진</div>
+                  <div class="pc-role">당숙녀</div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3d3">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3d3"
+                       data-name="유나영" data-role="당숙녀" data-gen="3세">
+                    <div class="pc-name">유나영</div>
+                    <div class="pc-role">당숙녀</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3d3-sp"
+                       data-name="윤영선" data-role="당숙부" data-gen="3세(배우자)">
+                    <div class="pc-name">윤영선</div>
+                    <div class="pc-role">당숙부</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유강노 가계 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유강노 가계</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="fam-group" id="fg3e1">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3e1"
+                       data-name="유원진" data-role="당숙" data-gen="3세">
+                    <div class="pc-name">유원진</div>
+                    <div class="pc-role">당숙</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3e1-sp"
+                       data-name="이의정" data-role="당숙모" data-gen="3세(배우자)">
+                    <div class="pc-name">이의정</div>
+                    <div class="pc-role">당숙모</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3e2">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3e2"
+                       data-name="유지영" data-role="당숙녀" data-gen="3세">
+                    <div class="pc-name">유지영</div>
+                    <div class="pc-role">당숙녀</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3e2-sp"
+                       data-name="김준태" data-role="당숙부" data-gen="3세(배우자)">
+                    <div class="pc-name">김준태</div>
+                    <div class="pc-role">당숙부</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유명노 가계 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유명노 가계</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="fam-group" id="fg3f1">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3f1"
+                       data-name="유수정" data-role="당숙녀" data-gen="3세">
+                    <div class="pc-name">유수정</div>
+                    <div class="pc-role">당숙녀</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3f1-sp"
+                       data-name="이창현" data-role="당숙부" data-gen="3세(배우자)">
+                    <div class="pc-name">이창현</div>
+                    <div class="pc-role">당숙부</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3f2">
+                <div class="pc" style="background:var(--g3s)" id="n3f2"
+                     data-name="유수미" data-role="당숙녀" data-gen="3세">
+                  <div class="pc-name">유수미</div>
+                  <div class="pc-role">당숙녀</div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3f3">
+                <div class="couple-row">
+                  <div class="pc" style="background:var(--g3s)" id="n3f3"
+                       data-name="유수지" data-role="당숙녀" data-gen="3세">
+                    <div class="pc-name">유수지</div>
+                    <div class="pc-role">당숙녀</div>
+                  </div>
+                  <span class="csym">⚭</span>
+                  <div class="pc" style="background:var(--sp)" id="n3f3-sp"
+                       data-name="한재호" data-role="당숙부" data-gen="3세(배우자)">
+                    <div class="pc-name">한재호</div>
+                    <div class="pc-role">당숙부</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fam-group" id="fg3f4">
+                <div class="pc" style="background:var(--g3s)" id="n3f4"
+                     data-name="유수인" data-role="당숙녀" data-gen="3세">
+                  <div class="pc-name">유수인</div>
+                  <div class="pc-role">당숙녀</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="gen-gap"></div>
+
+      <!-- ══════════════ 4세 ══════════════ -->
+      <div class="gen-row" id="row4">
+        <div class="gen-band" style="background:var(--band4)"></div>
+        <div class="gen-label">
+          <span class="gen-num">4세</span>
+          <span class="gen-lbl">증손세대</span>
+          <span class="gen-lbl-kor">曾孫代</span>
+        </div>
+        <div class="gen-sep"></div>
+        <div class="gen-nodes">
+
+          <!-- 유순노 가계 4세: 자녀 미기록 -->
+          <div style="display:flex;flex-direction:column;align-items:center;min-width:40px">
+            <div class="branch-label">유순노</div>
+            <div style="font-size:10px;color:var(--muted2);text-align:center;padding:10px 5px">미기록</div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- ★ 유창노 가계 4세 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유창노 가계</div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+
+              <!-- 유재진↓ -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유재진 ↓</div>
+                <div class="fam-group" id="fg4b1">
+                  <div class="couple-row">
+                    <div class="pc" style="background:var(--g4d)" id="n4b1"
+                         data-name="유태현" data-role="長曾孫" data-gen="4세">
+                      <div class="pc-name">유태현</div>
+                      <div class="pc-role">본인</div>
+                    </div>
+                    <span class="csym">⚭</span>
+                    <div class="pc" style="background:var(--sp)" id="n4b1-sp"
+                         data-name="이채린" data-role="배우자" data-gen="4세(배우자)">
+                      <div class="pc-name">이채린</div>
+                      <div class="pc-role">배우자</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4b2">
+                  <div class="couple-row">
+                    <div class="pc" style="background:var(--g4d)" id="n4b2"
+                         data-name="유해인" data-role="누나/여동생" data-gen="4세">
+                      <div class="pc-name">유해인</div>
+                      <div class="pc-role">누나/여동생</div>
+                    </div>
+                    <span class="csym">⚭</span>
+                    <div class="pc" style="background:var(--sp)" id="n4b2-sp"
+                         data-name="남기몽" data-role="배우자" data-gen="4세(배우자)">
+                      <div class="pc-name">남기몽</div>
+                      <div class="pc-role">배우자</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4b3">
+                  <div class="pc" style="background:var(--g4d)" id="n4b3"
+                       data-name="유지원" data-role="누나/여동생" data-gen="4세">
+                    <div class="pc-name">유지원</div>
+                    <div class="pc-role">누나/여동생</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 유연진↓ -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유연진 ↓</div>
+                <div class="fam-group" id="fg4b4">
+                  <div class="couple-row">
+                    <div class="pc" style="background:var(--g4s)" id="n4b4"
+                         data-name="이수민" data-role="사촌" data-gen="4세">
+                      <div class="pc-name">이수민</div>
+                      <div class="pc-role">사촌</div>
+                    </div>
+                    <span class="csym">⚭</span>
+                    <div class="pc" style="background:var(--sp)" id="n4b4-sp"
+                         data-name="정재헌" data-role="사촌매부" data-gen="4세(배우자)">
+                      <div class="pc-name">정재헌</div>
+                      <div class="pc-role">사촌매부</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4b5">
+                  <div class="couple-row">
+                    <div class="pc" style="background:var(--g4s)" id="n4b5"
+                         data-name="이수현" data-role="사촌" data-gen="4세">
+                      <div class="pc-name">이수현</div>
+                      <div class="pc-role">사촌</div>
+                    </div>
+                    <span class="csym">⚭</span>
+                    <div class="pc" style="background:var(--sp)" id="n4b5-sp"
+                         data-name="이형기" data-role="사촌매부" data-gen="4세(배우자)">
+                      <div class="pc-name">이형기</div>
+                      <div class="pc-role">사촌매부</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 유길진↓ -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유길진 ↓</div>
+                <div class="fam-group" id="fg4b6">
+                  <div class="pc" style="background:var(--g4s)" id="n4b6"
+                       data-name="문수혁" data-role="사촌" data-gen="4세">
+                    <div class="pc-name">문수혁</div>
+                    <div class="pc-role">사촌</div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4b7">
+                  <div class="couple-row">
+                    <div class="pc" style="background:var(--g4s)" id="n4b7"
+                         data-name="문선정" data-role="사촌" data-gen="4세">
+                      <div class="pc-name">문선정</div>
+                      <div class="pc-role">사촌</div>
+                    </div>
+                    <span class="csym">⚭</span>
+                    <div class="pc" style="background:var(--sp)" id="n4b7-sp"
+                         data-name="김형준" data-role="사촌매부" data-gen="4세(배우자)">
+                      <div class="pc-name">김형준</div>
+                      <div class="pc-role">사촌매부</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 유병재↓ -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유병재 ↓</div>
+                <div class="fam-group" id="fg4b8">
+                  <div class="pc" style="background:var(--g4s)" id="n4b8"
+                       data-name="유주원" data-role="사촌" data-gen="4세">
+                    <div class="pc-name">유주원</div>
+                    <div class="pc-role">사촌</div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4b9">
+                  <div class="pc" style="background:var(--g4s)" id="n4b9"
+                       data-name="유채미" data-role="사촌" data-gen="4세">
+                    <div class="pc-name">유채미</div>
+                    <div class="pc-role">사촌</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유태노 가계 4세 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유태노 가계</div>
+            <div class="sub-lbl">유승진 ↓</div>
+            <div class="fam-group" id="fg4c1">
+              <div class="pc" style="background:var(--g4s)" id="n4c1"
+                   data-name="유진희" data-role="재종손녀" data-gen="4세">
+                <div class="pc-name">유진희</div>
+                <div class="pc-role">재종손녀</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유영노 가계 4세 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유영노 가계</div>
+            <div style="display:flex;gap:12px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유수진 ↓</div>
+                <div class="fam-group" id="fg4d1">
+                  <div class="pc" style="background:var(--g4s)" id="n4d1"
+                       data-name="조승우" data-role="재종손" data-gen="4세">
+                    <div class="pc-name">조승우</div>
+                    <div class="pc-role">재종손</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유나영 ↓</div>
+                <div class="fam-group" id="fg4d2">
+                  <div class="pc" style="background:var(--g4s)" id="n4d2"
+                       data-name="윤지우" data-role="재종손" data-gen="4세">
+                    <div class="pc-name">윤지우</div>
+                    <div class="pc-role">재종손</div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4d3">
+                  <div class="pc" style="background:var(--g4s)" id="n4d3"
+                       data-name="윤연우" data-role="재종손녀" data-gen="4세">
+                    <div class="pc-name">윤연우</div>
+                    <div class="pc-role">재종손녀</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유강노 가계 4세 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유강노 가계</div>
+            <div class="sub-lbl">유원진 ↓</div>
+            <div class="fam-group" id="fg4e1">
+              <div class="pc" style="background:var(--g4s)" id="n4e1"
+                   data-name="유정빈" data-role="재종손" data-gen="4세">
+                <div class="pc-name">유정빈</div>
+                <div class="pc-role">재종손</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="branch-div"></div>
+
+          <!-- 유명노 가계 4세 -->
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label">유명노 가계</div>
+            <div style="display:flex;gap:12px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유수정 ↓</div>
+                <div class="fam-group" id="fg4f1">
+                  <div class="pc" style="background:var(--g4s)" id="n4f1"
+                       data-name="이지아" data-role="재종손녀" data-gen="4세">
+                    <div class="pc-name">이지아</div>
+                    <div class="pc-role">재종손녀</div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4f2">
+                  <div class="pc" style="background:var(--g4s)" id="n4f2"
+                       data-name="이지환" data-role="재종손" data-gen="4세">
+                    <div class="pc-name">이지환</div>
+                    <div class="pc-role">재종손</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유수지 ↓</div>
+                <div class="fam-group" id="fg4f3">
+                  <div class="pc" style="background:var(--g4s)" id="n4f3"
+                       data-name="한호재" data-role="재종손" data-gen="4세">
+                    <div class="pc-name">한호재</div>
+                    <div class="pc-role">재종손</div>
+                  </div>
+                </div>
+                <div class="fam-group" id="fg4f4">
+                  <div class="pc" style="background:var(--g4s)" id="n4f4"
+                       data-name="한이재" data-role="재종손녀" data-gen="4세">
+                    <div class="pc-name">한이재</div>
+                    <div class="pc-role">재종손녀</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="gen-gap"></div>
+
+      <!-- ══════════════ 5세 ══════════════ -->
+      <div class="gen-row" id="row5">
+        <div class="gen-band" style="background:var(--band5)"></div>
+        <div class="gen-label">
+          <span class="gen-num">5세</span>
+          <span class="gen-lbl">현손세대</span>
+          <span class="gen-lbl-kor">玄孫代</span>
+        </div>
+        <div class="gen-sep"></div>
+        <div class="gen-nodes">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div class="branch-label direct">유창노 가계</div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">유해인 ↓</div>
+                <div class="fam-group" id="fg5a">
+                  <div class="pc" style="background:var(--g5)" id="n5a"
+                       data-name="남유준" data-role="손자(유재진 기준)" data-gen="5세">
+                    <div class="pc-name">남유준</div>
+                    <div class="pc-role">손자</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">이수민 ↓</div>
+                <div class="fam-group" id="fg5b">
+                  <div class="pc" style="background:var(--g5)" id="n5b"
+                       data-name="정유담" data-role="조카손" data-gen="5세">
+                    <div class="pc-name">정유담</div>
+                    <div class="pc-role">조카손</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">이수현 ↓</div>
+                <div class="fam-group" id="fg5c">
+                  <div class="pc" style="background:var(--g5)" id="n5c"
+                       data-name="이도윤" data-role="조카손" data-gen="5세">
+                    <div class="pc-name">이도윤</div>
+                    <div class="pc-role">조카손</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="sub-lbl">문선정 ↓</div>
+                <div class="fam-group" id="fg5d">
+                  <div class="pc" style="background:var(--g5)" id="n5d"
+                       data-name="김수아" data-role="조카손" data-gen="5세">
+                    <div class="pc-name">김수아</div>
+                    <div class="pc-role">조카손</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /treeCanvas -->
+  </div><!-- /treeScroll -->
+</div><!-- /panel-tree -->
+
+
+<!-- ════════════════════════════════════════
+     PANEL 2: 가계별 카드
+════════════════════════════════════════ -->
+<div id="panel-cards" class="panel">
+  <div class="card-grid" style="margin-top:10px">
+
+    <!-- 유순노 가계 -->
+    <div class="branch-card">
+      <div class="branch-card-hd">
+        <div class="branch-card-dot" style="background:var(--g2)"></div>
+        <div>
+          <div class="branch-card-name">유순노 가계 · 長女</div>
+          <div class="branch-card-sub">유순노 ⚭ 故유연배 · 자녀 9명</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유순노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">故유연배</div>
+          <div class="bc-role">대고모 / 대고모부</div>
+        </div>
+        <div class="bc-children">
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유금숙</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유향숙</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유지수</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유성규</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유완숙</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유승희</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유민형</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유효경</div><span class="bc-child-role">5촌</span></div>
+          <div class="bc-child"><span class="bc-indent">└</span><div class="bc-child-name">유민균</div><span class="bc-child-role">5촌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유창노 가계 (★직계) -->
+    <div class="branch-card" style="border-color:rgba(228,189,106,.3)">
+      <div class="branch-card-hd" style="background:linear-gradient(90deg,rgba(228,189,106,.15),transparent)">
+        <div class="branch-card-dot" style="background:var(--gold)"></div>
+        <div>
+          <div class="branch-card-name" style="color:var(--gold)">유창노 가계 · 長男</div>
+          <div class="branch-card-sub">유창노 ⚭ 권선옥 · 4자녀 · 5세대</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유창노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">권선옥</div>
+          <div class="bc-role">할아버지 / 할머니</div>
+        </div>
+        <div class="bc-children">
+          <!-- 유재진 -->
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유재진 ⚭ 김희연</div>
+            <span class="bc-child-role">長孫</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span style="color:var(--gold)">유태현 ⚭ 이채린</span><span style="font-size:9px;margin-left:4px;color:var(--gold)">(⭐본인)</span></div>
+            <div class="bc-gc-row"><span>└</span><span>유해인 ⚭ 남기몽 → 남유준(5세)</span></div>
+            <div class="bc-gc-row"><span>└</span><span>유지원</span></div>
+          </div>
+          <!-- 유연진 -->
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유연진 ⚭ 이요섭</div>
+            <span class="bc-child-role">고모</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>이수민 ⚭ 정재헌 → 정유담(5세)</span></div>
+            <div class="bc-gc-row"><span>└</span><span>이수현 ⚭ 이형기 → 이도윤(5세)</span></div>
+          </div>
+          <!-- 유길진 -->
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유길진 ⚭ 문재식</div>
+            <span class="bc-child-role">고모</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>문수혁</span></div>
+            <div class="bc-gc-row"><span>└</span><span>문선정 ⚭ 김형준 → 김수아(5세)</span></div>
+          </div>
+          <!-- 유병재 -->
+          <div class="bc-child"><span class="bc-indent">└</span>
+            <div class="bc-child-name">유병재 ⚭ 김건후</div>
+            <span class="bc-child-role">삼촌</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>유주원</span></div>
+            <div class="bc-gc-row"><span>└</span><span>유채미</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유태노 가계 -->
+    <div class="branch-card">
+      <div class="branch-card-hd">
+        <div class="branch-card-dot" style="background:var(--g2)"></div>
+        <div>
+          <div class="branch-card-name">유태노 가계 · 次男</div>
+          <div class="branch-card-sub">유태노 ⚭ 한규자</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유태노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">한규자</div>
+          <div class="bc-role">작은할아버지 / 작은할머니</div>
+        </div>
+        <div class="bc-children">
+          <div class="bc-child"><span class="bc-indent">└</span>
+            <div class="bc-child-name">유승진 ⚭ 한희선</div>
+            <span class="bc-child-role">당숙</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>유진희</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유영노 가계 -->
+    <div class="branch-card">
+      <div class="branch-card-hd">
+        <div class="branch-card-dot" style="background:var(--g2)"></div>
+        <div>
+          <div class="branch-card-name">유영노 가계 · 三男</div>
+          <div class="branch-card-sub">유영노 ⚭ 신영희 · 자녀 3명</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유영노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">신영희</div>
+          <div class="bc-role">작은할아버지 / 작은할머니</div>
+        </div>
+        <div class="bc-children">
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유수진 ⚭ 조진환</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>조승우</span></div>
+          </div>
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유은진</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-child"><span class="bc-indent">└</span>
+            <div class="bc-child-name">유나영 ⚭ 윤영선</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>윤지우</span></div>
+            <div class="bc-gc-row"><span>└</span><span>윤연우</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유강노 가계 -->
+    <div class="branch-card">
+      <div class="branch-card-hd">
+        <div class="branch-card-dot" style="background:var(--g2)"></div>
+        <div>
+          <div class="branch-card-name">유강노 가계 · 四男</div>
+          <div class="branch-card-sub">유강노 ⚭ 김경애 · 자녀 2명</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유강노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">김경애</div>
+          <div class="bc-role">작은할아버지 / 작은할머니</div>
+        </div>
+        <div class="bc-children">
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유원진 ⚭ 이의정</div>
+            <span class="bc-child-role">당숙</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>유정빈</span></div>
+          </div>
+          <div class="bc-child"><span class="bc-indent">└</span>
+            <div class="bc-child-name">유지영 ⚭ 김준태</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유명노 가계 -->
+    <div class="branch-card">
+      <div class="branch-card-hd">
+        <div class="branch-card-dot" style="background:var(--g2)"></div>
+        <div>
+          <div class="branch-card-name">유명노 가계 · 五男</div>
+          <div class="branch-card-sub">유명노 ⚭ 최선숙 · 자녀 4명</div>
+        </div>
+      </div>
+      <div class="branch-card-body">
+        <div class="bc-person">
+          <div class="bc-name" style="color:var(--gold)">유명노</div>
+          <span class="bc-sp">⚭</span>
+          <div class="bc-name">최선숙</div>
+          <div class="bc-role">작은할아버지 / 작은할머니</div>
+        </div>
+        <div class="bc-children">
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유수정 ⚭ 이창현</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>이지아</span></div>
+            <div class="bc-gc-row"><span>└</span><span>이지환</span></div>
+          </div>
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유수미</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-child"><span class="bc-indent">├</span>
+            <div class="bc-child-name">유수지 ⚭ 한재호</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+          <div class="bc-gc">
+            <div class="bc-gc-row"><span>└</span><span>한호재</span></div>
+            <div class="bc-gc-row"><span>└</span><span>한이재</span></div>
+          </div>
+          <div class="bc-child"><span class="bc-indent">└</span>
+            <div class="bc-child-name">유수인</div>
+            <span class="bc-child-role">당숙녀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PANEL 3: 전체 명단
+════════════════════════════════════════ -->
+<div id="panel-list" class="panel">
+  <div class="print-panel">
+    <div style="text-align:center;margin-bottom:20px">
+      <button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+    </div>
+
+    <div class="print-section">
+      <div class="print-sec-hd"><span class="print-sec-title">1세 · 시조</span></div>
+      <div class="print-rows">
+        <div class="print-row"><div class="pr-dot" style="background:var(--dec)"></div><div class="pr-name">故 유병순</div><div class="pr-role">시조 · 증조할아버지</div><div class="pr-sp">⚭ 故 이예분</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--dec)"></div><div class="pr-name">故 이예분</div><div class="pr-role">시조 · 증조할머니</div></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <div class="print-sec-hd"><span class="print-sec-title">2세 · 자녀세대 (1남 5녀 포함)</span></div>
+      <div class="print-rows">
+        <div class="print-row"><div class="pr-dot" style="background:var(--dec)"></div><div class="pr-name">故 유연배</div><div class="pr-role">대고모부 (유순노 배우자)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유순노</div><div class="pr-role">대고모 · 長女</div><div class="pr-sp">⚭ 故유연배</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유창노</div><div class="pr-role">할아버지 · 長男 (★직계)</div><div class="pr-sp">⚭ 권선옥</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">권선옥</div><div class="pr-role">할머니</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유태노</div><div class="pr-role">작은할아버지 · 次男</div><div class="pr-sp">⚭ 한규자</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">한규자</div><div class="pr-role">작은할머니</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유영노</div><div class="pr-role">작은할아버지 · 三男</div><div class="pr-sp">⚭ 신영희</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">신영희</div><div class="pr-role">작은할머니</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유강노</div><div class="pr-role">작은할아버지 · 四男</div><div class="pr-sp">⚭ 김경애</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">김경애</div><div class="pr-role">작은할머니</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g2)"></div><div class="pr-name">유명노</div><div class="pr-role">작은할아버지 · 五男</div><div class="pr-sp">⚭ 최선숙</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">최선숙</div><div class="pr-role">작은할머니</div></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <div class="print-sec-hd"><span class="print-sec-title">3세 · 손자녀세대</span></div>
+      <div class="print-rows">
+        <!-- 유순노 가계 -->
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【유순노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유금숙</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유향숙</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유지수</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유성규</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유완숙</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유승희</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유민형</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유효경</div><div class="pr-role">5촌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유민균</div><div class="pr-role">5촌</div></div>
+        <!-- 유창노 가계 -->
+        <div class="print-row" style="background:rgba(228,189,106,.06)"><div class="pr-dot" style="background:var(--gold)"></div><div class="pr-name" style="font-size:11px;color:var(--gold)">【유창노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3d)"></div><div class="pr-name">유재진</div><div class="pr-role">아버지 (★직계)</div><div class="pr-sp">⚭ 김희연</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">김희연</div><div class="pr-role">어머니</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유연진</div><div class="pr-role">고모</div><div class="pr-sp">⚭ 이요섭</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">이요섭</div><div class="pr-role">고모부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유길진</div><div class="pr-role">고모</div><div class="pr-sp">⚭ 문재식</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">문재식</div><div class="pr-role">고모부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유병재</div><div class="pr-role">삼촌</div><div class="pr-sp">⚭ 김건후</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">김건후</div><div class="pr-role">숙모</div></div>
+        <!-- 유태노 -->
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【유태노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유승진</div><div class="pr-role">당숙</div><div class="pr-sp">⚭ 한희선</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">한희선</div><div class="pr-role">당숙모</div></div>
+        <!-- 유영노 -->
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【유영노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유수진</div><div class="pr-role">당숙녀</div><div class="pr-sp">⚭ 조진환</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">조진환</div><div class="pr-role">당숙부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유은진</div><div class="pr-role">당숙녀</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유나영</div><div class="pr-role">당숙녀</div><div class="pr-sp">⚭ 윤영선</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">윤영선</div><div class="pr-role">당숙부</div></div>
+        <!-- 유강노 -->
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【유강노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유원진</div><div class="pr-role">당숙</div><div class="pr-sp">⚭ 이의정</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">이의정</div><div class="pr-role">당숙모</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유지영</div><div class="pr-role">당숙녀</div><div class="pr-sp">⚭ 김준태</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">김준태</div><div class="pr-role">당숙부</div></div>
+        <!-- 유명노 -->
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【유명노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유수정</div><div class="pr-role">당숙녀</div><div class="pr-sp">⚭ 이창현</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">이창현</div><div class="pr-role">당숙부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유수미</div><div class="pr-role">당숙녀</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유수지</div><div class="pr-role">당숙녀</div><div class="pr-sp">⚭ 한재호</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">한재호</div><div class="pr-role">당숙부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g3s)"></div><div class="pr-name">유수인</div><div class="pr-role">당숙녀</div></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <div class="print-sec-hd"><span class="print-sec-title">4세 · 증손세대</span></div>
+      <div class="print-rows">
+        <div class="print-row" style="background:rgba(228,189,106,.06)"><div class="pr-dot" style="background:var(--gold)"></div><div class="pr-name" style="font-size:11px;color:var(--gold)">【유창노 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4d)"></div><div class="pr-name">유태현</div><div class="pr-role">본인 (⭐)</div><div class="pr-sp">⚭ 이채린</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">이채린</div><div class="pr-role">배우자</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4d)"></div><div class="pr-name">유해인</div><div class="pr-role">누나/여동생</div><div class="pr-sp">⚭ 남기몽</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">남기몽</div><div class="pr-role">배우자</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4d)"></div><div class="pr-name">유지원</div><div class="pr-role">누나/여동생</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">이수민</div><div class="pr-role">사촌 (유연진 자녀)</div><div class="pr-sp">⚭ 정재헌</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">정재헌</div><div class="pr-role">사촌매부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">이수현</div><div class="pr-role">사촌 (유연진 자녀)</div><div class="pr-sp">⚭ 이형기</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">이형기</div><div class="pr-role">사촌매부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">문수혁</div><div class="pr-role">사촌 (유길진 자녀)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">문선정</div><div class="pr-role">사촌 (유길진 자녀)</div><div class="pr-sp">⚭ 김형준</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--sp)"></div><div class="pr-name">김형준</div><div class="pr-role">사촌매부</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">유주원</div><div class="pr-role">사촌 (유병재 자녀)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">유채미</div><div class="pr-role">사촌 (유병재 자녀)</div></div>
+        <div class="print-row" style="background:rgba(228,189,106,.04)"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name" style="font-size:11px;color:var(--muted)">【방계 각 가계】</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">유진희</div><div class="pr-role">재종손녀 (유태노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">조승우</div><div class="pr-role">재종손 (유영노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">윤지우</div><div class="pr-role">재종손 (유영노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">윤연우</div><div class="pr-role">재종손녀 (유영노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">유정빈</div><div class="pr-role">재종손 (유강노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">이지아</div><div class="pr-role">재종손녀 (유명노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">이지환</div><div class="pr-role">재종손 (유명노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">한호재</div><div class="pr-role">재종손 (유명노 계)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g4s)"></div><div class="pr-name">한이재</div><div class="pr-role">재종손녀 (유명노 계)</div></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <div class="print-sec-hd"><span class="print-sec-title">5세 · 현손세대 (유창노 직계)</span></div>
+      <div class="print-rows">
+        <div class="print-row"><div class="pr-dot" style="background:var(--g5)"></div><div class="pr-name">남유준</div><div class="pr-role">손자 (유해인 자녀)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g5)"></div><div class="pr-name">정유담</div><div class="pr-role">조카손 (이수민 자녀)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g5)"></div><div class="pr-name">이도윤</div><div class="pr-role">조카손 (이수현 자녀)</div></div>
+        <div class="print-row"><div class="pr-dot" style="background:var(--g5)"></div><div class="pr-name">김수아</div><div class="pr-role">조카손 (문선정 자녀)</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ 수동 추가 구성원 섹션 (동적 렌더링) ══ -->
+<div id="customMemberSection" style="display:none">
+  <div class="print-section" style="margin-top:24px">
+    <div class="print-sec-hd" style="background:linear-gradient(90deg,rgba(100,180,120,.12),transparent);border-left-color:#3db87a">
+      <span class="print-sec-title" style="color:#3db87a">➕ 수동 추가 구성원</span>
+      <span style="font-size:10px;color:var(--muted);margin-left:8px" id="customMemberCount"></span>
+    </div>
+    <div class="print-rows" id="customMemberRows"></div>
+  </div>
+</div>
+
+<!-- ══ 수동 입력 모달 ══ -->
+<div class="modal-overlay" id="addMemberModal" onclick="if(event.target===this)closeAddMember()">
+  <div class="modal-box" onclick="event.stopPropagation()" style="max-width:400px">
+    <div class="modal-title">➕ 구성원 수동 추가</div>
+    <div class="modal-desc">목록에 없는 가족 구성원을 직접 등록하세요.</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div>
+        <div class="modal-section-title">이름 *</div>
+        <input id="am-name" class="modal-input" type="text" placeholder="홍길동" maxlength="20"
+               onkeydown="if(event.key==='Enter')document.getElementById('am-rel').focus()">
+      </div>
+      <div style="display:flex;gap:10px">
+        <div style="flex:1">
+          <div class="modal-section-title">세대</div>
+          <select id="am-gen" class="modal-input" style="cursor:pointer">
+            <option value="1세">1세 · 시조</option>
+            <option value="2세">2세 · 자녀세대</option>
+            <option value="3세" selected>3세 · 손자녀</option>
+            <option value="4세">4세 · 증손세대</option>
+            <option value="5세">5세 · 현손세대</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div style="flex:1">
+          <div class="modal-section-title">성별</div>
+          <select id="am-gender" class="modal-input" style="cursor:pointer">
+            <option value="남">남</option>
+            <option value="여">여</option>
+            <option value="미상">미상</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-title">관계 / 직책</div>
+        <input id="am-rel" class="modal-input" type="text" placeholder="예: 사촌, 당숙모, 배우자 등" maxlength="30"
+               onkeydown="if(event.key==='Enter')document.getElementById('am-phone').focus()">
+      </div>
+      <div>
+        <div class="modal-section-title">전화번호 (선택)</div>
+        <input id="am-phone" class="modal-input" type="tel" placeholder="010-0000-0000" maxlength="20"
+               onkeydown="if(event.key==='Enter')document.getElementById('am-note').focus()">
+      </div>
+      <div>
+        <div class="modal-section-title">메모 (선택)</div>
+        <textarea id="am-note" class="modal-textarea" rows="2" placeholder="주소, 생일, 기타 정보"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-row" style="margin-top:16px">
+      <button class="modal-btn" style="flex:1;background:linear-gradient(135deg,rgba(61,184,122,.25),rgba(61,184,122,.1));color:#3db87a;border-color:rgba(61,184,122,.4)"
+              onclick="saveNewMember()">✅ 추가 저장</button>
+      <button class="modal-btn modal-btn-close" onclick="closeAddMember()">취소</button>
+    </div>
+    <div id="am-edit-id" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ══ 이름변경 모드 오버레이 안내 ══ -->
+<div id="nameEditBanner" style="display:none;position:sticky;top:52px;z-index:40;
+  background:rgba(228,189,106,.12);border:1px solid var(--bdrG);border-radius:10px;
+  padding:10px 16px;margin:0 0 10px;text-align:center;font-size:12px;color:var(--gold)">
+  ✏️ <strong>이름 변경 모드</strong> — 수정할 이름의 <strong>✏️ 버튼</strong>을 누르세요
+  <button onclick="toggleNameEditMode(false)"
+    style="margin-left:12px;background:rgba(228,189,106,.2);border:1px solid var(--gold2);border-radius:6px;
+    padding:3px 12px;font-size:11px;color:var(--gold);cursor:pointer">종료</button>
+</div>
+<!-- ══ PANEL 4: 편집 관리 ══ -->
+<div id="panel-edit" class="panel">
+<div style="max-width:860px;margin:0 auto;padding:10px 0 40px">
+
+  <!-- ① 이름 수정 -->
+  <div class="edit-section">
+    <div class="edit-sec-hd">
+      <span class="edit-sec-icon">✏️</span>
+      <div>
+        <div class="edit-sec-title">이름 수정</div>
+        <div class="edit-sec-sub">이름을 탭(클릭)하면 바로 수정할 수 있습니다 · 수정된 이름은 🔄 동기화로 공유됩니다</div>
+      </div>
+    </div>
+    <div class="edit-search-bar">
+      <input id="nameSearchInput" class="edit-search" type="text" placeholder="🔍 이름 검색…" oninput="filterNameList(this.value)">
+    </div>
+    <div class="edit-name-grid" id="nameEditGrid"></div>
+  </div>
+
+  <!-- ② 이름 추가 -->
+  <div class="edit-section" style="margin-top:20px">
+    <div class="edit-sec-hd">
+      <span class="edit-sec-icon">➕</span>
+      <div>
+        <div class="edit-sec-title">이름 추가</div>
+        <div class="edit-sec-sub">목록에 없는 가족 구성원을 직접 등록합니다</div>
+      </div>
+    </div>
+
+    <div class="edit-form">
+      <div class="ef-row">
+        <div class="ef-field ef-wide">
+          <label class="ef-lbl">이름 <span style="color:#ef5350">*</span></label>
+          <input id="ef-name" class="ef-input" type="text" placeholder="홍길동" maxlength="20" oninput="efValidate()">
+        </div>
+        <div class="ef-field">
+          <label class="ef-lbl">세대</label>
+          <select id="ef-gen" class="ef-input ef-select">
+            <option value="1세">1세</option><option value="2세">2세</option>
+            <option value="3세" selected>3세</option><option value="4세">4세</option>
+            <option value="5세">5세</option><option value="기타">기타</option>
+          </select>
+        </div>
+        <div class="ef-field">
+          <label class="ef-lbl">성별</label>
+          <select id="ef-gender" class="ef-input ef-select">
+            <option value="남">남</option><option value="여">여</option><option value="미상">미상</option>
+          </select>
+        </div>
+      </div>
+      <div class="ef-row">
+        <div class="ef-field ef-wide">
+          <label class="ef-lbl">관계 / 직책</label>
+          <input id="ef-rel" class="ef-input" type="text" placeholder="예: 사촌, 당숙, 배우자">
+        </div>
+        <div class="ef-field ef-wide">
+          <label class="ef-lbl">전화번호</label>
+          <input id="ef-phone" class="ef-input" type="tel" placeholder="010-0000-0000">
+        </div>
+      </div>
+      <div class="ef-row">
+        <div class="ef-field" style="flex:1">
+          <label class="ef-lbl">메모</label>
+          <input id="ef-note" class="ef-input" type="text" placeholder="주소, 생일 등">
+        </div>
+      </div>
+      <div class="ef-actions">
+        <button id="efSaveBtn" class="ef-btn ef-btn-primary" onclick="efSave()" disabled>저장</button>
+        <button class="ef-btn" onclick="efReset()">초기화</button>
+        <span id="efEditLabel" style="font-size:11px;color:var(--muted);display:none">
+          수정 중 — <a href="#" onclick="efCancelEdit();return false" style="color:var(--gold)">취소</a>
+        </span>
+      </div>
+    </div>
+
+    <div id="editCustomList" style="margin-top:16px"></div>
+  </div>
+
+</div>
+</div><!-- /panel-edit -->
+
+<div class="overlay" id="overlay" onclick="closePopup()">
+  <div class="popup" onclick="event.stopPropagation()" style="max-width:360px">
+    <div class="popup-title" id="popupTitle">인물 정보</div>
+    <div class="popup-field"><span class="pf-key">이름</span><span class="pf-val" id="popupName"></span></div>
+    <div class="popup-field"><span class="pf-key">세대</span><span class="pf-val" id="popupGen"></span></div>
+    <div class="popup-field"><span class="pf-key">관계</span><span class="pf-val" id="popupRole"></span></div>
+
+    <!-- 전화번호 편집 인라인 -->
+    <div class="popup-field" style="flex-direction:column;align-items:stretch;gap:8px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="pf-key">📞 전화번호</span>
+        <span class="pf-val" id="popupPhone" style="color:rgba(100,220,160,.9)"></span>
+      </div>
+      <div style="display:flex;gap:6px">
+        <input id="popupPhoneInput" type="tel" placeholder="010-0000-0000"
+               style="flex:1;background:rgba(255,255,255,.07);border:1px solid var(--bdrG);border-radius:7px;padding:8px 10px;font-size:14px;color:var(--txt);outline:none;font-family:'Noto Sans KR',sans-serif;"
+               onkeydown="if(event.key==='Enter')savePopupPhone()">
+        <button onclick="savePopupPhone()"
+                style="background:linear-gradient(135deg,rgba(228,189,106,.3),rgba(228,189,106,.1));border:1px solid var(--gold2);border-radius:7px;padding:8px 14px;font-size:13px;color:var(--gold);cursor:pointer;white-space:nowrap;font-family:inherit">저장</button>
+      </div>
+    </div>
+
+    <!-- 메모 편집 인라인 -->
+    <div class="popup-field" style="flex-direction:column;align-items:stretch;gap:8px">
+      <span class="pf-key">📝 메모</span>
+      <textarea id="popupNoteInput" rows="2" placeholder="메모 입력 (생일, 주소 등)"
+                style="width:100%;background:rgba(255,255,255,.07);border:1px solid var(--bdrG);border-radius:7px;padding:8px 10px;font-size:13px;color:var(--txt);outline:none;resize:none;font-family:'Noto Sans KR',sans-serif;line-height:1.5"></textarea>
+      <button onclick="savePopupNote()"
+              style="width:100%;background:var(--glass2);border:1px solid var(--bdr);border-radius:7px;padding:8px;font-size:13px;color:var(--txt);cursor:pointer;font-family:inherit">메모 저장</button>
+    </div>
+
+    <button class="btn-close" onclick="closePopup()">닫기</button>
+  </div>
+</div>
+
+<!-- ══ 동기화 모달 ══ -->
+<div class="modal-overlay" id="syncModal" onclick="if(event.target===this)closeSyncModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-title">🔄 기기 연동 · 데이터 동기화</div>
+    <div class="modal-desc">전화번호·메모·이름수정 내용을 PC와 휴대폰 사이에서 공유하세요. 데이터는 서버에 저장되지 않고 각 기기 안에만 안전하게 보관됩니다.</div>
+
+    <div class="modal-section-title">📱 QR코드로 휴대폰에 바로 보내기</div>
+    <div class="modal-desc" style="margin-bottom:10px">아래 <strong>QR 만들기</strong>를 누른 뒤, 휴대폰 카메라로 QR을 비추면 이 가계도가 열리면서 데이터가 자동으로 들어갑니다.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+      <button class="modal-btn" style="background:rgba(228,189,106,.2);color:var(--gold);border-color:var(--gold2)" onclick="doMakeQR()">📷 QR 만들기</button>
+      <div id="qrBox" style="display:none;background:#fff;padding:14px;border-radius:14px"></div>
+      <div id="qrHint" style="font-size:11px;color:var(--muted2);text-align:center;display:none">휴대폰 카메라 앱으로 위 QR을 비춰주세요</div>
+    </div>
+
+    <div class="modal-section-title" style="margin-top:20px">🔑 동기화 코드 (카카오톡·문자로 공유)</div>
+    <div class="modal-desc" style="margin-bottom:8px">코드를 복사해서 다른 기기에 붙여넣으면 데이터가 동기화됩니다.</div>
+    <div class="modal-row" style="flex-direction:column;gap:8px">
+      <div style="display:flex;gap:8px">
+        <button class="modal-btn" onclick="doCopySyncCode()">📋 코드 생성 · 복사</button>
+      </div>
+      <textarea id="syncCodeOut" class="modal-textarea" placeholder="여기에 코드가 생성됩니다 (복사 후 다른 기기에서 붙여넣기)" rows="3" readonly onclick="this.select()"></textarea>
+      <div class="modal-section-title" style="margin-top:4px">📥 코드 붙여넣기 (다른 기기에서 가져오기)</div>
+      <textarea id="syncCodeIn" class="modal-textarea" placeholder="다른 기기에서 복사한 동기화 코드를 여기에 붙여넣으세요" rows="3"></textarea>
+      <button class="modal-btn" style="background:rgba(228,189,106,.2);color:var(--gold);border-color:var(--gold2)" onclick="doPasteSyncCode()">✅ 코드로 가져오기 (덮어쓰기)</button>
+    </div>
+
+    <div class="modal-section-title" style="margin-top:20px">📁 JSON 파일로 백업 / 복원</div>
+    <div class="modal-row">
+      <button class="modal-btn" onclick="doExportJSON()">⬇️ JSON 내보내기</button>
+      <button class="modal-btn" onclick="doImportJSON()">⬆️ JSON 가져오기</button>
+      <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImportFile(event)">
+    </div>
+
+    <div class="modal-row" style="margin-top:18px;justify-content:space-between">
+      <button class="modal-btn" style="color:rgba(220,100,100,.7);border-color:rgba(200,60,60,.2);background:rgba(200,60,60,.07)" onclick="doClearAll()">🗑 전체 초기화</button>
+      <button class="modal-btn modal-btn-close" onclick="closeSyncModal()">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 이름 수정 모달 ══ -->
+<div class="modal-overlay" id="nameEditModal" onclick="if(event.target===this)closeNameEditModal()">
+  <div class="modal-box" onclick="event.stopPropagation()" style="max-width:360px">
+    <div class="modal-title">✏️ 표시 이름 수정</div>
+    <div class="modal-desc" id="nameEditOrig" style="margin-bottom:12px"></div>
+    <input id="nameEditInput" class="modal-input" type="text" placeholder="표시할 이름 입력"
+           onkeydown="if(event.key==='Enter')saveNameEdit();if(event.key==='Escape')closeNameEditModal()">
+    <div class="modal-row" style="margin-top:14px">
+      <button class="modal-btn" style="background:rgba(228,189,106,.2);color:var(--gold);border-color:var(--gold2);flex:1" onclick="saveNameEdit()">저장</button>
+      <button class="modal-btn" onclick="resetNameEdit()">원래대로</button>
+      <button class="modal-btn modal-btn-close" onclick="closeNameEditModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 메모 모달 ══ -->
+<div class="modal-overlay" id="noteModal" onclick="if(event.target===this)closeNoteModal()">
+  <div class="modal-box" onclick="event.stopPropagation()" style="max-width:380px">
+    <div class="modal-title" id="noteModalTitle">📝 메모</div>
+    <textarea id="noteInput" class="modal-textarea" rows="5" placeholder="메모를 입력하세요 (생일, 주소, 기타 정보 등)"
+              style="margin-top:4px"></textarea>
+    <div class="modal-row" style="margin-top:12px">
+      <button class="modal-btn" style="background:rgba(228,189,106,.2);color:var(--gold);border-color:var(--gold2);flex:1" onclick="saveNote()">저장</button>
+      <button class="modal-btn modal-btn-close" onclick="closeNoteModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<!-- 기기 연동 플로팅 버튼 -->
+<button id="fabSync" onclick="openSyncModal()" title="기기 연동 · PC·모바일 동기화" aria-label="기기 연동">🔄</button>
+
+<script>
+/* ════════════════════════════════
+   TAB CONTROL
+════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-' + id).classList.add('on');
+  event.currentTarget.classList.add('on');
+  if (id === 'tree') setTimeout(drawLines, 200);
+}
+
+/* popup handled below */
+
+/* ════════════════════════════════
+   SVG CONNECTION LINES
+════════════════════════════════ */
+function drawLines() {
+  const svg = document.getElementById('treeSvg');
+  const canvas = document.getElementById('treeCanvas');
+  if (!svg || !canvas) return;
+  svg.innerHTML = '';
+  const cr = canvas.getBoundingClientRect();
+  svg.setAttribute('width', canvas.offsetWidth);
+  svg.setAttribute('height', canvas.offsetHeight);
+
+  function mid(id) {
+    const el = document.getElementById(id);
+    if (!el) return null;
+    const r = el.getBoundingClientRect();
+    return {
+      x:      r.left - cr.left + r.width / 2,
+      top:    r.top  - cr.top,
+      bottom: r.top  - cr.top + r.height,
+      cx:     r.left - cr.left + r.width / 2,
+      cy:     r.top  - cr.top  + r.height / 2,
+    };
+  }
+
+  function curve(fromId, toId, color, sw) {
+    const f = mid(fromId), t = mid(toId);
+    if (!f || !t) return;
+    const my = (f.bottom + t.top) / 2;
+    const d = `M${f.x},${f.bottom} C${f.x},${my} ${t.x},${my} ${t.x},${t.top}`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', color || 'rgba(228,189,106,.3)');
+    p.setAttribute('stroke-width', sw || '1.5');
+    svg.appendChild(p);
+  }
+
+  const GOLD    = 'rgba(228,189,106,.35)';
+  const BRIGHT  = 'rgba(228,189,106,.55)';
+  const GREEN   = 'rgba(61,184,122,.4)';
+  const BLUE    = 'rgba(60,120,200,.3)';
+  const PURPLE  = 'rgba(160,100,240,.3)';
+  const DIM     = 'rgba(228,189,106,.2)';
+
+  // 1→2세 (root → 6 children)
+  ['fg2a','fg2b','fg2c','fg2d','fg2e','fg2f'].forEach(id => {
+    curve('fg-root', id, GOLD, 1.5);
+  });
+
+  // 2→3세 유창노 직계
+  ['fg3b1','fg3b2','fg3b3','fg3b4'].forEach(id => curve('fg2b', id, BRIGHT, 2));
+
+  // 2→3세 기타
+  curve('fg2a', 'n3a1', DIM, 1);
+  curve('fg2c', 'fg3c1', BLUE);
+  ['fg3d1','fg3d2','fg3d3'].forEach(id => curve('fg2d', id, BLUE));
+  ['fg3e1','fg3e2'].forEach(id => curve('fg2e', id, BLUE));
+  ['fg3f1','fg3f2','fg3f3','fg3f4'].forEach(id => curve('fg2f', id, BLUE));
+
+  // 3→4세 유창노 직계
+  ['fg4b1','fg4b2','fg4b3'].forEach(id => curve('fg3b1', id, GREEN, 2));
+  ['fg4b4','fg4b5'].forEach(id => curve('fg3b2', id, GOLD));
+  ['fg4b6','fg4b7'].forEach(id => curve('fg3b3', id, GOLD));
+  ['fg4b8','fg4b9'].forEach(id => curve('fg3b4', id, GOLD));
+
+  // 3→4세 기타
+  curve('fg3c1', 'fg4c1', BLUE);
+  curve('fg3d1', 'fg4d1', BLUE);
+  ['fg4d2','fg4d3'].forEach(id => curve('fg3d3', id, BLUE));
+  curve('fg3e1', 'fg4e1', BLUE);
+  ['fg4f1','fg4f2'].forEach(id => curve('fg3f1', id, BLUE));
+  ['fg4f3','fg4f4'].forEach(id => curve('fg3f3', id, BLUE));
+
+  // 4→5세
+  curve('fg4b2', 'fg5a', PURPLE);
+  curve('fg4b4', 'fg5b', PURPLE);
+  curve('fg4b5', 'fg5c', PURPLE);
+  curve('fg4b7', 'fg5d', PURPLE);
+}
+
+/* ════════════════════════════════
+   COUNT TOTAL
+════════════════════════════════ */
+const total = document.querySelectorAll('.pc').length;
+document.getElementById('totalCount').textContent = `총 ${total}명 수록`;
+
+/* ════════════════════════════════
+   CROSS-DEVICE DATA ENGINE
+   data = { v:1, phones:{}, names:{}, notes:{} }
+════════════════════════════════ */
+const LS_KEY = 'famtree_data_유병순이예분';
+
+function loadData() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null') || { v:1, phones:{}, names:{}, notes:{} }; }
+  catch { return { v:1, phones:{}, names:{}, notes:{} }; }
+}
+function saveData(d) {
+  localStorage.setItem(LS_KEY, JSON.stringify(d));
+}
+function getKey(rawName) { return rawName.replace(/^故\s*/,'').trim(); }
+
+/* ── sync code (base64 JSON) ── */
+function toSyncCode(d) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(d))));
+}
+function fromSyncCode(code) {
+  try { return JSON.parse(decodeURIComponent(escape(atob(code.trim())))); }
+  catch { return null; }
+}
+
+/* ════════════════════════════════
+   SYNC MODAL
+════════════════════════════════ */
+function openSyncModal() { document.getElementById('syncModal').classList.add('show'); }
+function closeSyncModal() { document.getElementById('syncModal').classList.remove('show'); }
+
+function doExportJSON() {
+  const d = loadData();
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type:'application/json;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = '유병순이예분_가계도데이터.json'; a.click();
+}
+function doImportJSON() { document.getElementById('importFileInput').click(); }
+function handleImportFile(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const d = JSON.parse(ev.target.result);
+      if (!d.v) throw new Error('invalid');
+      saveData(d); refreshAllRows(); updateBadge();
+      showToast('✅ 데이터를 가져왔습니다.');
+      closeSyncModal();
+    } catch { showToast('❌ 올바른 파일이 아닙니다.', true); }
+  };
+  r.readAsText(file);
+  e.target.value = '';
+}
+function doCopySyncCode() {
+  const code = toSyncCode(loadData());
+  document.getElementById('syncCodeOut').value = code;
+  navigator.clipboard.writeText(code).then(() => showToast('📋 동기화 코드 복사됨')).catch(() => showToast('코드를 직접 선택해서 복사하세요'));
+}
+function doPasteSyncCode() {
+  const code = document.getElementById('syncCodeIn').value.trim();
+  if (!code) { showToast('❌ 코드를 붙여넣으세요.', true); return; }
+  const d = fromSyncCode(code);
+  if (!d || !d.v) { showToast('❌ 올바르지 않은 코드입니다.', true); return; }
+  saveData(d); refreshAllRows(); updateBadge();
+  showToast('✅ 동기화 완료!'); closeSyncModal();
+}
+function doClearAll() {
+  if (!confirm('⚠️ 모든 입력 데이터(전화번호·메모·이름수정)를 초기화하시겠습니까?')) return;
+  saveData({ v:1, phones:{}, names:{}, notes:{} });
+  refreshAllRows(); updateBadge();
+  showToast('🗑 초기화 완료'); closeSyncModal();
+}
+function doPrintList() { window.print(); }
+
+/* ════════════════════════════════
+   TOAST
+════════════════════════════════ */
+function showToast(msg, err) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id='toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.style.cssText = `position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+    background:${err?'rgba(180,50,50,.95)':'rgba(20,80,40,.95)'};color:#fff;
+    padding:10px 22px;border-radius:999px;font-size:13px;z-index:9999;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);transition:opacity .3s;opacity:1;
+    font-family:'Noto Sans KR',sans-serif;white-space:nowrap;`;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.opacity='0'; }, 2200);
+}
+
+/* ════════════════════════════════
+   BADGE
+════════════════════════════════ */
+function updateBadge() {
+  const d = loadData();
+  const pc = Object.keys(d.phones).length;
+  const badge = document.getElementById('phoneCountBadge');
+  if (badge) badge.textContent = `📞 ${pc}명 전화번호 저장됨`;
+}
+
+/* ════════════════════════════════
+   ROW BUILDER
+════════════════════════════════ */
+function isHeaderRow(row) {
+  const nm = row.querySelector('.pr-name');
+  return !nm || nm.style.fontSize === '11px' || nm.textContent.trim().startsWith('【');
+}
+
+function buildRow(row) {
+  if (isHeaderRow(row)) return;
+  // 이미 built 이면 skip
+  if (row.querySelector('.row-ctrl')) return;
+
+  const nameEl = row.querySelector('.pr-name');
+  const rawName = nameEl.textContent.trim();
+  const key = getKey(rawName);
+  const d = loadData();
+
+  /* ── 이름 수정 영역 ── */
+  nameEl.style.cursor = 'text'; nameEl.title = '더블클릭해서 표시명 수정';
+  nameEl.ondblclick = () => openNameEdit(row, key, nameEl);
+
+  /* ── 표시명 반영 ── */
+  if (d.names[key]) nameEl.dataset.displayName = d.names[key];
+
+  /* ── 컨트롤 래퍼 ── */
+  const ctrl = document.createElement('div');
+  ctrl.className = 'row-ctrl';
+
+  /* ── 전화번호 ── */
+  const phone = d.phones[key] || '';
+  const phoneDisplay = document.createElement('span');
+  phoneDisplay.className = 'pr-phone-saved';
+  phoneDisplay.textContent = phone;
+  phoneDisplay.style.display = phone ? 'inline' : 'none';
+
+  const phoneBtn = document.createElement('button');
+  phoneBtn.className = 'pr-phone-btn' + (phone ? ' has-phone' : '');
+  phoneBtn.textContent = phone ? '✏️' : '📞';
+  phoneBtn.title = phone ? '전화번호 수정' : '전화번호 입력';
+
+  const phoneInputW = document.createElement('div');
+  phoneInputW.className = 'pr-phone-input-wrap';
+
+  const phoneInput = document.createElement('input');
+  phoneInput.type = 'tel'; phoneInput.className = 'pr-phone-input';
+  phoneInput.placeholder = '010-0000-0000'; phoneInput.value = phone; phoneInput.maxLength = 20;
+
+  const phoneSave = document.createElement('button');
+  phoneSave.className = 'pr-phone-save'; phoneSave.textContent = '저장';
+
+  const phoneDel = document.createElement('button');
+  phoneDel.className = 'pr-phone-del'; phoneDel.textContent = '삭제';
+  phoneDel.style.display = phone ? '' : 'none';
+
+  const phoneCancel = document.createElement('button');
+  phoneCancel.className = 'pr-phone-del'; phoneCancel.textContent = '취소';
+  phoneCancel.style.cssText = 'color:var(--muted);border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.05)';
+
+  phoneInputW.append(phoneInput, phoneSave, phoneDel, phoneCancel);
+
+  function openPhone() {
+    phoneInputW.classList.add('show');
+    phoneBtn.style.display = 'none';
+    phoneDisplay.style.display = 'none';
+    phoneInput.focus(); phoneInput.select();
+  }
+  function closePhone() {
+    const cur = loadData().phones[key] || '';
+    phoneInputW.classList.remove('show');
+    phoneBtn.style.display = '';
+    phoneDisplay.textContent = cur;
+    phoneDisplay.style.display = cur ? 'inline' : 'none';
+    phoneBtn.textContent = cur ? '✏️' : '📞';
+    phoneBtn.className = 'pr-phone-btn' + (cur ? ' has-phone' : '');
+    phoneDel.style.display = cur ? '' : 'none';
+  }
+  function savePhone() {
+    const val = phoneInput.value.trim();
+    const dd = loadData();
+    if (val) dd.phones[key] = val; else delete dd.phones[key];
+    saveData(dd); updateBadge();
+    closePhone();
+    flashRow(row);
+    showToast(val ? `📞 ${rawName} 저장` : `🗑 ${rawName} 삭제`);
+  }
+
+  phoneBtn.onclick = openPhone;
+  phoneDisplay.onclick = openPhone;
+  phoneSave.onclick = savePhone;
+  phoneDel.onclick = () => { phoneInput.value = ''; savePhone(); };
+  phoneCancel.onclick = closePhone;
+  phoneInput.onkeydown = e => { if(e.key==='Enter') savePhone(); if(e.key==='Escape') closePhone(); };
+
+  /* ── 메모 ── */
+  const note = d.notes[key] || '';
+  const noteBtn = document.createElement('button');
+  noteBtn.className = 'pr-note-btn' + (note ? ' has-note' : '');
+  noteBtn.textContent = note ? '📝' : '📄';
+  noteBtn.title = note ? '메모 수정' : '메모 추가';
+  noteBtn.onclick = () => openNoteModal(key, rawName);
+
+  const noteDisplay = document.createElement('span');
+  noteDisplay.className = 'pr-note-display';
+  noteDisplay.textContent = note;
+  noteDisplay.style.display = note ? 'inline' : 'none';
+
+  ctrl.append(phoneDisplay, noteDisplay, phoneBtn, noteBtn, phoneInputW);
+  row.appendChild(ctrl);
+}
+
+function refreshAllRows() {
+  // 기존 ctrl 제거 후 재생성
+  document.querySelectorAll('.row-ctrl').forEach(c => c.remove());
+  document.querySelectorAll('.pr-name').forEach(n => { n.ondblclick = null; });
+  document.querySelectorAll('.print-row').forEach(row => buildRow(row));
+  // 이름 수정 반영
+  const d = loadData();
+  document.querySelectorAll('.print-row').forEach(row => {
+    if (isHeaderRow(row)) return;
+    const nameEl = row.querySelector('.pr-name');
+    if (!nameEl) return;
+    const key = getKey(nameEl.textContent.replace(/\(.*\)/,'').trim());
+    if (d.names[key]) nameEl.title = `원래이름: ${key}`;
+  });
+}
+
+function flashRow(row) {
+  row.style.background = 'rgba(40,160,100,.1)';
+  setTimeout(() => row.style.background = '', 700);
+}
+
+/* ════════════════════════════════
+   NAME EDIT MODAL
+════════════════════════════════ */
+function openNameEdit(row, key, nameEl) {
+  const d = loadData();
+  const cur = d.names[key] || key;
+  const modal = document.getElementById('nameEditModal');
+  document.getElementById('nameEditKey').textContent = key;
+  document.getElementById('nameEditInput').value = cur;
+  document.getElementById('nameEditOrig').textContent = `원래 이름: ${key}`;
+  modal._key = key; modal._nameEl = nameEl;
+  modal.classList.add('show');
+  setTimeout(() => document.getElementById('nameEditInput').select(), 50);
+}
+function closeNameEditModal() { document.getElementById('nameEditModal').classList.remove('show'); }
+function saveNameEdit() {
+  const modal = document.getElementById('nameEditModal');
+  const key = modal._key, nameEl = modal._nameEl;
+  const val = document.getElementById('nameEditInput').value.trim();
+  const d = loadData();
+  if (val && val !== key) { d.names[key] = val; nameEl.textContent = val; showToast(`✅ 이름 수정: ${key} → ${val}`); }
+  else { delete d.names[key]; nameEl.textContent = key; showToast('↩ 원래 이름으로 복원'); }
+  saveData(d); closeNameEditModal();
+}
+function resetNameEdit() {
+  const modal = document.getElementById('nameEditModal');
+  const key = modal._key, nameEl = modal._nameEl;
+  const d = loadData();
+  delete d.names[key]; nameEl.textContent = key;
+  saveData(d); closeNameEditModal();
+  showToast('↩ 원래 이름으로 복원');
+}
+
+/* ════════════════════════════════
+   NOTE MODAL
+════════════════════════════════ */
+function openNoteModal(key, rawName) {
+  const modal = document.getElementById('noteModal');
+  const d = loadData();
+  document.getElementById('noteModalTitle').textContent = `📝 메모 — ${rawName}`;
+  document.getElementById('noteInput').value = d.notes[key] || '';
+  modal._key = key; modal._name = rawName;
+  modal.classList.add('show');
+  setTimeout(() => document.getElementById('noteInput').focus(), 50);
+}
+function closeNoteModal() { document.getElementById('noteModal').classList.remove('show'); }
+function saveNote() {
+  const modal = document.getElementById('noteModal');
+  const key = modal._key, name = modal._name;
+  const val = document.getElementById('noteInput').value.trim();
+  const d = loadData();
+  if (val) d.notes[key] = val; else delete d.notes[key];
+  saveData(d);
+  // refresh row note display
+  document.querySelectorAll('.print-row').forEach(row => {
+    if (isHeaderRow(row)) return;
+    const nm = row.querySelector('.pr-name');
+    if (!nm) return;
+    const rk = getKey(nm.textContent.trim());
+    if (rk !== key) return;
+    const nd = row.querySelector('.pr-note-display');
+    const nb = row.querySelector('.pr-note-btn');
+    if (nd) { nd.textContent = val; nd.style.display = val ? 'inline' : 'none'; }
+    if (nb) { nb.textContent = val ? '📝' : '📄'; nb.className = 'pr-note-btn' + (val ? ' has-note' : ''); }
+  });
+  showToast(val ? `📝 메모 저장` : `🗑 메모 삭제`);
+  closeNoteModal();
+}
+
+/* ════════════════════════════════
+   SVG CONNECTION LINES
+════════════════════════════════ */
+function drawLines() {
+  const svg = document.getElementById('treeSvg');
+  const canvas = document.getElementById('treeCanvas');
+  if (!svg || !canvas) return;
+  svg.innerHTML = '';
+  const cr = canvas.getBoundingClientRect();
+  svg.setAttribute('width', canvas.offsetWidth);
+  svg.setAttribute('height', canvas.offsetHeight);
+
+  function mid(id) {
+    const el = document.getElementById(id);
+    if (!el) return null;
+    const r = el.getBoundingClientRect();
+    return {
+      x: r.left-cr.left+r.width/2,
+      top: r.top-cr.top,
+      bottom: r.top-cr.top+r.height,
+    };
+  }
+  function curve(fromId, toId, color, sw) {
+    const f=mid(fromId), t=mid(toId);
+    if(!f||!t) return;
+    const my=(f.bottom+t.top)/2;
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',`M${f.x},${f.bottom} C${f.x},${my} ${t.x},${my} ${t.x},${t.top}`);
+    p.setAttribute('fill','none');
+    p.setAttribute('stroke',color||'rgba(228,189,106,.3)');
+    p.setAttribute('stroke-width',sw||'1.5');
+    svg.appendChild(p);
+  }
+
+  const GOLD='rgba(228,189,106,.35)', BRIGHT='rgba(228,189,106,.55)', GREEN='rgba(61,184,122,.4)';
+  const BLUE='rgba(60,120,200,.3)', PURPLE='rgba(160,100,240,.3)', DIM='rgba(228,189,106,.2)';
+
+  ['fg2a','fg2b','fg2c','fg2d','fg2e','fg2f'].forEach(id=>curve('fg-root',id,GOLD,1.5));
+  ['fg3b1','fg3b2','fg3b3','fg3b4'].forEach(id=>curve('fg2b',id,BRIGHT,2));
+  curve('fg2a','n3a1',DIM,1);
+  curve('fg2c','fg3c1',BLUE);
+  ['fg3d1','fg3d2','fg3d3'].forEach(id=>curve('fg2d',id,BLUE));
+  ['fg3e1','fg3e2'].forEach(id=>curve('fg2e',id,BLUE));
+  ['fg3f1','fg3f2','fg3f3','fg3f4'].forEach(id=>curve('fg2f',id,BLUE));
+  ['fg4b1','fg4b2','fg4b3'].forEach(id=>curve('fg3b1',id,GREEN,2));
+  ['fg4b4','fg4b5'].forEach(id=>curve('fg3b2',id,GOLD));
+  ['fg4b6','fg4b7'].forEach(id=>curve('fg3b3',id,GOLD));
+  ['fg4b8','fg4b9'].forEach(id=>curve('fg3b4',id,GOLD));
+  curve('fg3c1','fg4c1',BLUE);
+  curve('fg3d1','fg4d1',BLUE);
+  ['fg4d2','fg4d3'].forEach(id=>curve('fg3d3',id,BLUE));
+  curve('fg3e1','fg4e1',BLUE);
+  ['fg4f1','fg4f2'].forEach(id=>curve('fg3f1',id,BLUE));
+  ['fg4f3','fg4f4'].forEach(id=>curve('fg3f3',id,BLUE));
+  curve('fg4b2','fg5a',PURPLE);
+  curve('fg4b4','fg5b',PURPLE);
+  curve('fg4b5','fg5c',PURPLE);
+  curve('fg4b7','fg5d',PURPLE);
+}
+
+/* ════════════════════════════════
+   TAB CONTROL
+════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+id).classList.add('on');
+  event.currentTarget.classList.add('on');
+  if(id==='tree') setTimeout(drawLines,200);
+}
+
+/* ════════════════════════════════
+   POPUP (가계도 카드 클릭 + 인라인 편집)
+════════════════════════════════ */
+document.querySelectorAll('.pc').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const d=loadData(), key=getKey((card.dataset.name||'').trim());
+    document.getElementById('popupTitle').textContent='인물 정보';
+    document.getElementById('popupName').textContent=d.names[key]||(card.dataset.name||'-');
+    document.getElementById('popupGen').textContent=card.dataset.gen||'-';
+    document.getElementById('popupRole').textContent=card.dataset.role||'-';
+    document.getElementById('popupPhone').textContent=d.phones[key]||'';
+    document.getElementById('popupPhoneInput').value=d.phones[key]||'';
+    document.getElementById('popupNoteInput').value=d.notes[key]||'';
+    const ov=document.getElementById('overlay');
+    ov.dataset.key=key; ov.dataset.pname=card.dataset.name||'';
+    ov.classList.add('show');
+  });
+});
+function closePopup(){ document.getElementById('overlay').classList.remove('show'); }
+function savePopupPhone(){
+  const ov=document.getElementById('overlay');
+  const key=ov.dataset.key, name=ov.dataset.pname;
+  const val=document.getElementById('popupPhoneInput').value.trim();
+  const d=loadData();
+  if(val) d.phones[key]=val; else delete d.phones[key];
+  saveData(d); updateBadge();
+  document.getElementById('popupPhone').textContent=val;
+  refreshAllRows();
+  showToast(val?`📞 ${name} 저장`:`🗑 전화번호 삭제`);
+}
+function savePopupNote(){
+  const ov=document.getElementById('overlay');
+  const key=ov.dataset.key, name=ov.dataset.pname;
+  const val=document.getElementById('popupNoteInput').value.trim();
+  const d=loadData();
+  if(val) d.notes[key]=val; else delete d.notes[key];
+  saveData(d); refreshAllRows();
+  showToast(val?`📝 ${name} 메모 저장`:`🗑 메모 삭제`);
+}
+
+/* ════════════════════════════════
+   INIT
+════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', ()=>{
+  const printPanel = document.querySelector('#panel-list .print-panel');
+
+  /* ── 툴바 ── */
+  const toolbar = document.createElement('div');
+  toolbar.className = 'phone-toolbar';
+  toolbar.innerHTML = `
+    <button class="phone-toolbar-btn" onclick="toggleNameEditMode(true)" id="btnNameEdit">✏️ 이름 변경</button>
+    <button class="phone-toolbar-btn" onclick="openAddMember()" style="color:rgba(61,220,120,.8);border-color:rgba(61,184,100,.25);background:rgba(61,184,100,.07)">➕ 인원 추가</button>
+    <button class="phone-toolbar-btn" onclick="openSyncModal()">🔄 동기화</button>
+    <button class="phone-toolbar-btn" onclick="doPrintList()">🖨 인쇄</button>
+    <span class="phone-count" id="phoneCountBadge">📞 0명 저장됨</span>
+  `;
+  printPanel.insertBefore(toolbar, printPanel.querySelector('.print-section'));
+
+  /* ── 팁 ── */
+  const tip = document.createElement('div');
+  tip.style.cssText='font-size:11px;color:var(--muted2);padding:0 0 10px;text-align:center;';
+  tip.textContent='💡 이름 더블클릭·✏️ 버튼: 표시명 수정  ·  📞: 전화번호  ·  📄: 메모  ·  ➕: 인원 추가';
+  printPanel.insertBefore(tip, printPanel.querySelector('.print-section'));
+
+  /* 이름변경 배너를 print-panel 상단으로 이동 */
+  const banner = document.getElementById('nameEditBanner');
+  printPanel.insertBefore(banner, printPanel.firstChild);
+
+  /* 수동 추가 섹션 이동 */
+  const customSec = document.getElementById('customMemberSection');
+  printPanel.appendChild(customSec);
+
+  document.querySelectorAll('.print-row').forEach(row=>buildRow(row));
+  renderCustomMembers();
+  updateBadge();
+});
+
+/* ════════════════════════════════
+   이름 변경 모드
+════════════════════════════════ */
+let nameEditMode = false;
+function toggleNameEditMode(on) {
+  nameEditMode = (on === undefined ? !nameEditMode : on);
+  document.getElementById('nameEditBanner').style.display = nameEditMode ? 'block' : 'none';
+  const btn = document.getElementById('btnNameEdit');
+  if (btn) {
+    btn.style.background = nameEditMode ? 'rgba(228,189,106,.2)' : '';
+    btn.style.color = nameEditMode ? 'var(--gold)' : '';
+    btn.style.borderColor = nameEditMode ? 'var(--gold2)' : '';
+  }
+  // 각 행의 이름 옆에 ✏️ 버튼 표시/숨김
+  document.querySelectorAll('.print-row').forEach(row => {
+    if (isHeaderRow(row)) return;
+    let eb = row.querySelector('.name-edit-btn');
+    if (!eb) {
+      eb = document.createElement('button');
+      eb.className = 'name-edit-btn';
+      eb.textContent = '✏️';
+      eb.title = '이름 변경';
+      eb.style.cssText = 'background:rgba(228,189,106,.15);border:1px solid var(--bdrG);border-radius:6px;padding:3px 8px;font-size:13px;cursor:pointer;margin-left:6px;flex-shrink:0;';
+      eb.onclick = (e) => {
+        e.stopPropagation();
+        const nameEl = row.querySelector('.pr-name');
+        const rawName = nameEl.textContent.trim();
+        const key = getKey(rawName);
+        openNameEdit(row, key, nameEl);
+      };
+      const nameEl = row.querySelector('.pr-name');
+      nameEl.parentNode.insertBefore(eb, nameEl.nextSibling);
+    }
+    eb.style.display = nameEditMode ? 'inline-block' : 'none';
+  });
+}
+
+/* ════════════════════════════════
+   수동 인원 추가
+════════════════════════════════ */
+const GEN_COLORS = { '1세':'var(--dec)','2세':'var(--g2)','3세':'var(--g3s)',
+                     '4세':'var(--g4s)','5세':'var(--g5)','기타':'var(--sp)' };
+
+function openAddMember(editId) {
+  const modal = document.getElementById('addMemberModal');
+  document.getElementById('am-edit-id').textContent = editId || '';
+  if (editId) {
+    const d = loadData();
+    const m = (d.custom||[]).find(x=>x.id===editId);
+    if (m) {
+      document.getElementById('am-name').value = m.name||'';
+      document.getElementById('am-gen').value = m.gen||'3세';
+      document.getElementById('am-gender').value = m.gender||'남';
+      document.getElementById('am-rel').value = m.rel||'';
+      document.getElementById('am-phone').value = m.phone||'';
+      document.getElementById('am-note').value = m.note||'';
+    }
+    modal.querySelector('.modal-title').textContent = '✏️ 구성원 정보 수정';
+  } else {
+    ['am-name','am-rel','am-phone','am-note'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('am-gen').value='3세';
+    document.getElementById('am-gender').value='남';
+    modal.querySelector('.modal-title').textContent = '➕ 구성원 수동 추가';
+  }
+  modal.classList.add('show');
+  setTimeout(()=>document.getElementById('am-name').focus(),80);
+}
+function closeAddMember() { document.getElementById('addMemberModal').classList.remove('show'); }
+
+function saveNewMember() {
+  const name = document.getElementById('am-name').value.trim();
+  if (!name) { showToast('❌ 이름을 입력하세요.', true); return; }
+  const d = loadData();
+  if (!d.custom) d.custom = [];
+  const editId = document.getElementById('am-edit-id').textContent.trim();
+
+  const member = {
+    id:    editId || ('cm_' + Date.now()),
+    name,
+    gen:   document.getElementById('am-gen').value,
+    gender:document.getElementById('am-gender').value,
+    rel:   document.getElementById('am-rel').value.trim(),
+    phone: document.getElementById('am-phone').value.trim(),
+    note:  document.getElementById('am-note').value.trim(),
+  };
+
+  if (editId) {
+    const idx = d.custom.findIndex(x=>x.id===editId);
+    if (idx>=0) d.custom[idx] = member;
+  } else {
+    d.custom.push(member);
+  }
+
+  // 전화번호도 메인 phones에 저장
+  if (member.phone) d.phones[member.name] = member.phone;
+  if (member.note)  d.notes[member.name]  = member.note;
+
+  saveData(d); updateBadge(); renderCustomMembers();
+  showToast(editId ? `✅ ${name} 수정됨` : `✅ ${name} 추가됨`);
+  closeAddMember();
+}
+
+function deleteCustomMember(id) {
+  if (!confirm('이 구성원을 삭제하시겠습니까?')) return;
+  const d = loadData();
+  d.custom = (d.custom||[]).filter(x=>x.id!==id);
+  saveData(d); renderCustomMembers();
+  showToast('🗑 삭제됨');
+}
+
+function renderCustomMembers() {
+  const d = loadData();
+  const members = d.custom || [];
+  const sec = document.getElementById('customMemberSection');
+  const rows = document.getElementById('customMemberRows');
+  const cnt  = document.getElementById('customMemberCount');
+
+  if (!members.length) { sec.style.display='none'; return; }
+  sec.style.display = 'block';
+  cnt.textContent = `총 ${members.length}명`;
+  rows.innerHTML = '';
+
+  // 세대별 정렬
+  const genOrder = {'1세':1,'2세':2,'3세':3,'4세':4,'5세':5,'기타':9};
+  [...members].sort((a,b)=>(genOrder[a.gen]||9)-(genOrder[b.gen]||9)).forEach(m=>{
+    const row = document.createElement('div');
+    row.className = 'print-row';
+    row.style.flexWrap = 'wrap';
+
+    const dot = document.createElement('div');
+    dot.className = 'pr-dot';
+    dot.style.background = GEN_COLORS[m.gen]||'var(--sp)';
+
+    const name = document.createElement('div');
+    name.className = 'pr-name';
+    name.textContent = m.name;
+
+    const role = document.createElement('div');
+    role.className = 'pr-role';
+    role.style.cssText = 'font-size:11px;color:var(--muted);';
+    role.textContent = [m.gen, m.rel, m.gender].filter(Boolean).join(' · ');
+
+    const actions = document.createElement('div');
+    actions.style.cssText = 'margin-left:auto;display:flex;gap:6px;align-items:center;flex-shrink:0;';
+
+    if (m.phone) {
+      const ph = document.createElement('span');
+      ph.style.cssText = 'font-size:12px;color:rgba(100,220,160,.85);';
+      ph.textContent = m.phone;
+      actions.appendChild(ph);
+    }
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = '✏️';
+    editBtn.title = '수정';
+    editBtn.className = 'pr-phone-btn';
+    editBtn.style.fontSize = '13px';
+    editBtn.onclick = () => openAddMember(m.id);
+
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '🗑';
+    delBtn.title = '삭제';
+    delBtn.className = 'pr-phone-del';
+    delBtn.style.cssText += 'font-size:13px;padding:4px 8px;';
+    delBtn.onclick = () => deleteCustomMember(m.id);
+
+    actions.append(editBtn, delBtn);
+    row.append(dot, name, role, actions);
+
+    if (m.note) {
+      const noteEl = document.createElement('div');
+      noteEl.style.cssText = 'width:100%;padding-left:20px;font-size:11px;color:rgba(180,160,80,.7);margin-top:2px;';
+      noteEl.textContent = '📝 ' + m.note;
+      row.appendChild(noteEl);
+    }
+
+    rows.appendChild(row);
+  });
+}
+
+window.addEventListener('load', ()=>setTimeout(drawLines,500));
+let rz; window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(drawLines,300);});
+
+/* ════════════════════════════════
+   EDIT PANEL — 이름 수정 그리드
+════════════════════════════════ */
+const GEN_COL = {'1세':'var(--dec)','2세':'var(--g2)','3세 직계':'var(--g3d)',
+                  '3세':'var(--g3s)','4세 직계':'var(--g4d)','4세':'var(--g4s)',
+                  '5세':'var(--g5)','기타':'var(--sp)','배우자':'var(--sp)'};
+
+// 전체 인물 목록 (HTML에서 추출)
+function getAllPersons() {
+  const persons = [];
+  const seen = new Set();
+  document.querySelectorAll('.print-row').forEach(row => {
+    if (isHeaderRow(row)) return;
+    const nm = row.querySelector('.pr-name');
+    if (!nm) return;
+    const name = nm.textContent.trim();
+    if (!name || seen.has(name)) return;
+    seen.add(name);
+    // 색상: pr-dot의 background
+    const dot = row.querySelector('.pr-dot');
+    const color = dot ? dot.style.background : 'var(--sp)';
+    persons.push({ name, color });
+  });
+  return persons;
+}
+
+let allPersons = [];
+
+function buildNameGrid() {
+  allPersons = getAllPersons();
+  filterNameList('');
+}
+
+function filterNameList(q) {
+  const grid = document.getElementById('nameEditGrid');
+  if (!grid) return;
+  const d = loadData();
+  const filtered = q ? allPersons.filter(p => p.name.includes(q)) : allPersons;
+  grid.innerHTML = '';
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="padding:16px;color:var(--muted);font-size:13px">검색 결과가 없습니다.</div>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const key = getKey(p.name);
+    const displayName = d.names[key];
+    const chip = document.createElement('div');
+    chip.className = 'name-chip' + (displayName ? ' edited' : '');
+    chip.dataset.key = key;
+    chip.dataset.orig = p.name;
+
+    chip.innerHTML = `
+      <div class="chip-dot" style="background:${p.color}"></div>
+      <div style="flex:1;min-width:0">
+        <div class="chip-orig">${displayName || p.name}</div>
+        ${displayName ? `<div class="chip-new">원래: ${p.name}</div>` : ''}
+      </div>
+      <div class="chip-edit-icon">✏️</div>
+    `;
+    chip.onclick = () => openChipEdit(chip, key, p.name, p.color);
+    grid.appendChild(chip);
+  });
+}
+
+function openChipEdit(chip, key, origName, color) {
+  // 이미 편집 중인 칩 닫기
+  document.querySelectorAll('.name-chip-editing').forEach(c => closeChipEdit(c));
+
+  const d = loadData();
+  const curDisplay = d.names[key] || origName;
+
+  chip.classList.add('name-chip-editing');
+  chip.innerHTML = `
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <div class="chip-dot" style="background:${color}"></div>
+      <span style="font-size:12px;color:var(--muted)">원래 이름: <strong style="color:var(--txt)">${origName}</strong></span>
+    </div>
+    <input class="chip-edit-input" type="text" value="${curDisplay}" placeholder="표시할 이름 입력" maxlength="20">
+    <div class="chip-edit-btns">
+      <button class="chip-save-btn">저장</button>
+      <button class="chip-cancel-btn">취소</button>
+      ${d.names[key] ? '<button class="chip-reset-btn">원래대로</button>' : ''}
+    </div>
+  `;
+  chip.onclick = null;
+
+  const input = chip.querySelector('.chip-edit-input');
+  input.focus(); input.select();
+
+  chip.querySelector('.chip-save-btn').onclick = () => {
+    const val = input.value.trim();
+    const d2 = loadData();
+    if (val && val !== origName) { d2.names[key] = val; showToast(`✅ ${origName} → ${val}`); }
+    else { delete d2.names[key]; if (!val || val === origName) showToast('↩ 원래 이름 유지'); }
+    saveData(d2);
+    buildNameGrid();
+    refreshAllRows();
+  };
+  chip.querySelector('.chip-cancel-btn').onclick = () => buildNameGrid();
+  const resetBtn = chip.querySelector('.chip-reset-btn');
+  if (resetBtn) resetBtn.onclick = () => {
+    const d2 = loadData(); delete d2.names[key]; saveData(d2);
+    showToast('↩ 원래 이름으로 복원'); buildNameGrid(); refreshAllRows();
+  };
+  input.onkeydown = e => {
+    if (e.key === 'Enter') chip.querySelector('.chip-save-btn').click();
+    if (e.key === 'Escape') buildNameGrid();
+  };
+}
+function closeChipEdit(chip) { /* handled by buildNameGrid rebuild */ }
+
+/* ════════════════════════════════
+   EDIT PANEL — 이름 추가 폼
+════════════════════════════════ */
+let efEditingId = null;
+
+function efValidate() {
+  const btn = document.getElementById('efSaveBtn');
+  if (btn) btn.disabled = !document.getElementById('ef-name').value.trim();
+}
+function efReset() {
+  ['ef-name','ef-rel','ef-phone','ef-note'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  const g = document.getElementById('ef-gen'); if (g) g.value = '3세';
+  const gn = document.getElementById('ef-gender'); if (gn) gn.value = '남';
+  efEditingId = null;
+  const lbl = document.getElementById('efEditLabel'); if (lbl) lbl.style.display = 'none';
+  const btn = document.getElementById('efSaveBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '저장'; }
+}
+function efCancelEdit() { efReset(); }
+
+function efSave() {
+  const name = document.getElementById('ef-name').value.trim();
+  if (!name) return;
+  const d = loadData();
+  if (!d.custom) d.custom = [];
+  const member = {
+    id:     efEditingId || ('cm_' + Date.now()),
+    name,
+    gen:    document.getElementById('ef-gen').value,
+    gender: document.getElementById('ef-gender').value,
+    rel:    document.getElementById('ef-rel').value.trim(),
+    phone:  document.getElementById('ef-phone').value.trim(),
+    note:   document.getElementById('ef-note').value.trim(),
+  };
+  if (member.phone) d.phones[member.name] = member.phone;
+  if (member.note)  d.notes[member.name]  = member.note;
+  if (efEditingId) {
+    const idx = d.custom.findIndex(x => x.id === efEditingId);
+    if (idx >= 0) d.custom[idx] = member; else d.custom.push(member);
+  } else {
+    d.custom.push(member);
+  }
+  saveData(d); updateBadge();
+  renderEditCustomList();
+  renderCustomMembers(); // 명단 탭도 갱신
+  showToast(efEditingId ? `✅ ${name} 수정됨` : `✅ ${name} 추가됨`);
+  efReset();
+}
+
+function efLoadEdit(id) {
+  const d = loadData();
+  const m = (d.custom||[]).find(x => x.id === id);
+  if (!m) return;
+  efEditingId = id;
+  document.getElementById('ef-name').value = m.name||'';
+  document.getElementById('ef-gen').value  = m.gen||'3세';
+  document.getElementById('ef-gender').value = m.gender||'남';
+  document.getElementById('ef-rel').value  = m.rel||'';
+  document.getElementById('ef-phone').value= m.phone||'';
+  document.getElementById('ef-note').value = m.note||'';
+  const btn = document.getElementById('efSaveBtn');
+  if (btn) { btn.disabled = false; btn.textContent = '수정 저장'; }
+  const lbl = document.getElementById('efEditLabel'); if (lbl) lbl.style.display = 'inline';
+  document.getElementById('ef-name').focus();
+  document.getElementById('ef-name').scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function efDeleteCustom(id) {
+  if (!confirm('삭제하시겠습니까?')) return;
+  const d = loadData();
+  d.custom = (d.custom||[]).filter(x => x.id !== id);
+  saveData(d); renderEditCustomList(); renderCustomMembers();
+  showToast('🗑 삭제됨');
+}
+
+function renderEditCustomList() {
+  const el = document.getElementById('editCustomList');
+  if (!el) return;
+  const d = loadData();
+  const members = d.custom || [];
+  if (!members.length) { el.innerHTML = '<div style="padding:10px 0;font-size:12px;color:var(--muted2)">추가된 구성원이 없습니다.</div>'; return; }
+
+  const genOrder = {'1세':1,'2세':2,'3세':3,'4세':4,'5세':5,'기타':9};
+  const GC = {'1세':'var(--dec)','2세':'var(--g2)','3세':'var(--g3s)','4세':'var(--g4s)','5세':'var(--g5)','기타':'var(--sp)'};
+  const sorted = [...members].sort((a,b)=>(genOrder[a.gen]||9)-(genOrder[b.gen]||9));
+
+  el.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:8px">추가된 구성원 ${members.length}명</div>
+    <div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;overflow:hidden">
+      ${sorted.map(m => `
+        <div class="cm-row">
+          <div class="cm-dot" style="background:${GC[m.gen]||'var(--sp)'}"></div>
+          <div style="flex:1;min-width:0">
+            <div class="cm-name">${m.name}</div>
+            <div class="cm-meta">${[m.gen, m.rel, m.gender].filter(Boolean).join(' · ')}</div>
+            ${m.phone ? `<div style="font-size:12px;color:rgba(100,220,160,.8);margin-top:1px">${m.phone}</div>` : ''}
+          </div>
+          <div class="cm-actions">
+            <button class="cm-edit-btn" onclick="efLoadEdit('${m.id}')">✏️ 수정</button>
+            <button class="cm-del-btn"  onclick="efDeleteCustom('${m.id}')">🗑</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* showTab 확장: edit 탭 진입 시 그리드 빌드 */
+const _origShowTab = showTab;
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+id).classList.add('on');
+  event.currentTarget.classList.add('on');
+  if (id==='tree') setTimeout(drawLines,200);
+  if (id==='edit') { buildNameGrid(); renderEditCustomList(); }
+}
+
+
+/* ════════════════════════════════
+   QR 기기 연동 + URL 해시 자동 동기화
+════════════════════════════════ */
+function _qrMsg(msg) {
+  var box = document.getElementById('qrBox'), hint = document.getElementById('qrHint');
+  if (box) { box.style.display='block';
+    box.innerHTML = '<div style="color:#8a1f1f;font-size:12px;max-width:208px;text-align:center;line-height:1.55">'+msg+'</div>'; }
+  if (hint) hint.style.display='none';
+}
+function _loadQRLib(cb) {
+  if (typeof QRCode !== 'undefined') { cb(true); return; }
+  var s = document.getElementById('qrlib-script');
+  if (s) {
+    s.addEventListener('load', function(){ cb(typeof QRCode!=='undefined'); });
+    s.addEventListener('error', function(){ cb(false); });
+    return;
+  }
+  s = document.createElement('script');
+  s.id = 'qrlib-script';
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload  = function(){ cb(typeof QRCode!=='undefined'); };
+  s.onerror = function(){ cb(false); };
+  document.head.appendChild(s);
+}
+function doMakeQR() {
+  var box  = document.getElementById('qrBox');
+  var hint = document.getElementById('qrHint');
+  if (!box) return;
+  var code = toSyncCode(loadData());
+  var base = location.href.split('#')[0];
+  var url  = base + '#sync=' + encodeURIComponent(code);
+  if (url.length > 2200) {
+    _qrMsg('저장된 데이터가 많아 QR에 담기 어렵습니다.<br>아래 동기화 코드를 사용하세요.');
+    return;
+  }
+  box.style.display = 'block';
+  box.innerHTML = '<div style="color:#6b5a1e;font-size:12px;text-align:center">QR 코드 생성 중…</div>';
+  _loadQRLib(function(ok){
+    if (!ok || typeof QRCode === 'undefined') {
+      _qrMsg('QR 라이브러리를 불러오지 못했습니다.<br>인터넷 연결을 확인하거나 아래 동기화 코드를 이용하세요.');
+      return;
+    }
+    try {
+      box.innerHTML = '';
+      new QRCode(box, {
+        text: url, width: 224, height: 224,
+        colorDark: '#0B1320', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.L
+      });
+      if (hint) hint.style.display = 'block';
+      showToast('📷 QR 생성 완료 — 휴대폰 카메라로 스캔하세요');
+    } catch (e) {
+      _qrMsg('QR 생성에 실패했습니다.<br>아래 동기화 코드를 사용하세요.');
+    }
+  });
+}
+
+/* 페이지 열릴 때 URL 해시(#sync=)로 다른 기기 데이터 자동 불러오기 */
+(function importFromHash(){
+  try {
+    var h = location.hash || '';
+    if (h.indexOf('#sync=') !== 0) return;
+    var raw = h.slice(6);
+    var d = fromSyncCode(decodeURIComponent(raw));
+    if (d && d.v) {
+      saveData(d);
+      try { history.replaceState(null, '', location.pathname + location.search); }
+      catch(e) { location.hash = ''; }
+      window.addEventListener('DOMContentLoaded', function(){
+        setTimeout(function(){
+          if (typeof refreshAllRows === 'function') refreshAllRows();
+          if (typeof updateBadge === 'function') updateBadge();
+          if (typeof renderCustomMembers === 'function') renderCustomMembers();
+          showToast('✅ 다른 기기의 데이터를 불러왔습니다');
+        }, 500);
+      });
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
